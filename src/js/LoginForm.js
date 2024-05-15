@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import '../css/LoginForm.css';
 import { useNavigate } from 'react-router-dom';
-import GoogleImage from '../구글.png';
-import KakaoImage from '../카카오톡.png';
-import FacebookImage from '../페이스북.png';
+import GoogleImage from '../img/구글.png';
+import KakaoImage from '../img/카카오톡.png';
+import FacebookImage from '../img/페이스북.png';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
