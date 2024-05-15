@@ -1,0 +1,58 @@
+/* Movie.css */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgb(243, 196, 196);
+}
+
+.title {
+  text-align: center;
+}
+
+.date-picker {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.date-picker label {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.date-picker input[type="date"] {
+  padding: 8px;
+  font-size: 16px;
+}
+
+.movie-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.subtitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.movie-item {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.3s ease;
+}
+
+.movie-item:hover {
+  background-color: #f9f9f9;
+}
+
+.movie-item p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.movie-item p:first-child {
+  font-weight: bold;
+}

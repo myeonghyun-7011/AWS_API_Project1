@@ -1,0 +1,44 @@
+/* MovieTheaters.css */
+
+.map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(243, 196, 196);
+  width: 80%; /* 맵의 80%로 설정합니다. */
+  margin: 0 auto; /* 가운데 정렬을 위해 추가합니다. */
+}
+
+.map-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.search-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: #512da8;
+  color: #fff;
+  cursor: pointer;
+}
+
+.map {
+  width: 100%; /* 맵을 100%로 설정합니다. */
+  height: 400px;
+  margin-top: 20px;
+}
