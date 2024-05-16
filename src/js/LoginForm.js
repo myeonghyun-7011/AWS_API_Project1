@@ -15,7 +15,7 @@ const LoginForm = () => {
         console.log("Access Key PW:", accessKeyPw);
 
         // 로그인이 성공하면 "/" 경로로 이동합니다.
-        navigate("/");
+        navigate("/AccessInfo");
     };
 
     return (

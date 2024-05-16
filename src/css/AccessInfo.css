@@ -1,0 +1,35 @@
+.access-info-container {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.access-info-container h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.metric-values {
+  margin-top: 10px;
+}
+
+.metric-values p {
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.metric-values p:last-child {
+  margin-bottom: 0;
+}
+
+.metric-values p span {
+  font-weight: bold;
+  color: #333;
+}
+
+.metric-values p span.value {
+  margin-left: 10px;
+  color: #666;
+}
