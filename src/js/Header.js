@@ -1,10 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../css/Header.css';
 
-const Header = () => {
+const HeaderNav = () => {
   return (
-    <h1 className="logo">Movie Reserve</h1>
+    <header className="header">
+      <h1 className="logo">ADAPOTR</h1>
+      <nav className="navigation">
+        <Link to="/">HOME</Link>
+        <Link to="/LoginForm">Access_Info</Link>
+      </nav>
+    </header>
   );
 };
 
-export default Header;
+export default HeaderNav;

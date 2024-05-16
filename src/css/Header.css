@@ -1,7 +1,30 @@
-.logo {
-  background-color: #333; 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
   color: white;
-  padding: 10px;
-  text-align: center;
+}
+
+.logo {
   margin: 0;
+}
+
+.navigation {
+  margin: 0;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: white;
+  margin-left: 20px;
+}
+
+.navigation a:first-child {
+  margin-left: 0;
+}
+
+.navigation {
+  margin-right: 20px;
 }

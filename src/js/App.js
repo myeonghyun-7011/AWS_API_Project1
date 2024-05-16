@@ -1,18 +1,16 @@
-// App.js
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import '../css/App.css';
-import Nav from './nav';
+import '../css/style.css';
 import Header from './Header';
 import Router from './Router';
+import Footer from './Footer';
 
 function App() {
-  const [message, setMessage] = useState('');
-
   return (
     <div className="App">
       <Header />
-      <Nav />
       <Router />
+      <Footer />
     </div>
   );
 }

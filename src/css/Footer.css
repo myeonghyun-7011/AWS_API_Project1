@@ -1,6 +1,17 @@
-div{
-  overflow: hidden;
+.footer__right {
   background-color: #333;
-  margin-top: 0px;
-  text-decoration: none;
+  text-align: center;
+  padding-top: 30px;
+  color: #666;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 768px) {
+  .footer__right {
+    position: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+  }
 }
