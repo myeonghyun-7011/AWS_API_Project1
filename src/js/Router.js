@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import LoginForm from "./LoginForm";
-import Slider from "./components/Slider";
+import Main from "./Main";
 
 const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<Slider />} />
+      <Route path="/" element={<Main />} />
       <Route path="/LoginForm" element={<LoginForm />} />
     </Routes>
   );

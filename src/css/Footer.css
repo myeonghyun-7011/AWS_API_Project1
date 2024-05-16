@@ -4,14 +4,23 @@
   padding-top: 30px;
   color: #666;
   line-height: 1.5;
+  position: fixed; /* 화면 하단에 고정 */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* 다른 요소 위에 위치하도록 z-index 설정 */
+  visibility: hidden; /* 기본적으로 숨김 */
+  opacity: 0; /* 기본적으로 투명 */
+  transition: visibility 0s, opacity 0.5s linear; /* 애니메이션 효과 설정 */
+}
+
+.footer__right.show {
+  visibility: visible; /* 보이게 함 */
+  opacity: 1; /* 불투명하게 함 */
 }
 
 @media screen and (max-width: 768px) {
   .footer__right {
-    position: auto;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 0;
+    position: static; /* 화면 좁을 때 기본 위치로 변경 */
   }
 }
