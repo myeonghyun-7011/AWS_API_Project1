@@ -392,9 +392,9 @@
   position: fixed;
   right: 20px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 13px;
   cursor: pointer;
-  background-color: #007bff;
+  background-color: #333333;
   color: white;
   border: none;
   border-radius: 5px;
@@ -403,7 +403,9 @@
 }
 
 .scroll-button:hover {
-  background-color: #0056b3;
+  border: solid 1px #8c8c8c;
+  background-color: #ffffff;
+  color: #333333;
 }
 
 .scroll-button:first-of-type {
