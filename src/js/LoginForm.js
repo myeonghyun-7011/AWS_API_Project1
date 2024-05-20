@@ -62,9 +62,9 @@ const LoginForm = () => {
 
   return (
     <div className="login-container">
-      <h2>LOGIN</h2>
+      {/*<h2>LOGIN</h2>*/}
       <div className={`region-select ${showRegionList ? "active" : ""}`}>
-        {!selectedRegion && <p>리전을 선택해주세요</p>}
+        {!selectedRegion && <p id="region_title_p">리전을 선택해주세요</p>}
         <button onClick={toggleRegionList}>
           {selectedRegion ? `도쿄 (${selectedRegion})` : "리전 선택"} ▼
         </button>
@@ -87,7 +87,7 @@ const LoginForm = () => {
       <form onSubmit={handleSubmit}>
         <div className="custom-input">
           <label htmlFor="accessKeyId">
-            <b>Access_Key_ID</b>
+            <p id="accesskey">Access_Key_ID</p>
           </label>
           <input
             type="text"
@@ -99,7 +99,7 @@ const LoginForm = () => {
           />
 
           <label htmlFor="accessKeyPw">
-            <b>Access_Key_PW</b>
+            <p id="accesskey">Access_Key_PW</p>
           </label>
           <input
             type="password"
@@ -110,13 +110,11 @@ const LoginForm = () => {
             required
           />
 
-          <button type="submit">Access</button>
+          <button type="submit">Search</button>
         </div>
 
         <div className="forgot-password">
-          <a>
-            비밀번호를 잊어버리셨나요? <a href="#">here</a>
-          </a>
+          비밀번호를 잊어버리셨나요? <a href="#">here</a>
         </div>
       </form>
     </div>

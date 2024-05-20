@@ -1,3 +1,26 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GangwonEdu_OTFBoldA";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .login-container {
   max-width: 400px;
   margin: 100px auto;
@@ -12,24 +35,29 @@
   margin-bottom: 20px;
 }
 
+p#region_title_p {
+  font-family: "GangwonEdu_OTFBoldA";
+}
+
 .region-select {
   position: relative;
   margin-bottom: 20px;
 }
 
 .region-select button {
+  font-size: 16px;
+  font-family: "GangwonEdu_OTFBoldA";
   width: 100%;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 30px;
   border: 1px solid #ccc;
   background-color: #fff;
   cursor: pointer;
 }
 
 .region-select button::after {
-  content: ''; /* 화살표 없음 */
+  content: ""; /* 화살표 없음 */
 }
-
 
 .region-list {
   position: absolute;
@@ -68,32 +96,50 @@
 }
 
 .custom-input label {
+  font-family: "Pretendard-Regular";
   display: block;
-  margin-top: 30px;
+  margin-top: 10px;
   margin-bottom: 5px;
 }
 
 .custom-input input {
-  width: 100%;
+  font-size: 11px;
+  width: 95%;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 30px;
   border: 1px solid #ccc;
   margin-bottom: 10px;
 }
 
 .custom-input button {
+  font-family: "Pretendard-Regular";
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 15px;
   width: 100%;
-  padding: 10px;
+  padding: 10px 0px;
   border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
+  border-radius: 30px;
+  background-color: #fee500;
+  border: solid 1px #fee500;
+  color: #333;
   cursor: pointer;
+}
+
+.custom-input button:hover {
+  background-color: #ccc;
+  border: solid 1px #ccc;
 }
 
 .custom-input p {
   margin-top: 5px;
   color: red;
+}
+
+p#accesskey {
+  font-family: "GangwonEdu_OTFBoldA";
+  color: #000000;
+  margin: 3px;
 }
 
 .forgot-password {
