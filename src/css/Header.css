@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: #333;
+  padding: 3px;
+  /*background-color: #fee500;*/
   color: white;
 }
 
@@ -17,7 +17,7 @@
 
 .navigation a {
   text-decoration: none;
-  color: white;
+  color: #333;
   margin-left: 20px;
 }
 
@@ -27,4 +27,41 @@
 
 .navigation {
   margin-right: 20px;
+}
+
+img.imgLogo__img {
+  max-width: 50%;
+  left: auto;
+}
+
+.imgLogo__inner.container {
+  width: 100px;
+  float: left;
+}
+
+h3#LogoText {
+  font-family: "GangwonEdu_OTFBoldA";
+  margin-top: 6px;
+  color: #323232;
+}
+
+.navigation {
+  display: flex;
+}
+
+.navigation a {
+  padding: 10px 20px;
+  margin: 0 10px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #333;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.navigation a:hover {
+  border: solid 1px #8c8c8c;
+  background-color: white;
+  color: #333;
 }
