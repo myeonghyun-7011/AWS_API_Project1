@@ -2,8 +2,9 @@ import React from "react";
 import Slider from "./components/Slider";
 import Text from "./components/Text";
 import Banner from "./components/Banner";
-import Image from "./components/Image";
-import ImageText from "./components/ImageText";
+// import Image from "./components/Image";
+// import ImageText from "./components/ImageText";
+import Map from "./components/Map";
 
 const Main = () => {
   const scrollToTop = () => {
@@ -29,6 +30,7 @@ const Main = () => {
       <br />
       <Banner />
       <br />
+      <Map />
       <button className="scroll-button" onClick={scrollToTop}>
         <i className="fas fa-arrow-up"></i>
       </button>
