@@ -1,14 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import Main from "./Main";
-import SubMain from "./SubMain";
+import AccessInfo from "./AccessInfo";
 
 const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
       <Route path="/LoginForm" element={<LoginForm />} />
-      <Route path="/SubMain" element={<SubMain />} />
+      <Route path="/AccessInfo" element={<AccessInfo />} />
     </Routes>
   );
 };

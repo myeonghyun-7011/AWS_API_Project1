@@ -5,6 +5,7 @@ import '../css/reset.css';
 import Header from './Header';
 import Router from './Router';
 import Footer from './Footer';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function App() {
   return (

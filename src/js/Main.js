@@ -6,6 +6,14 @@ import Image from "./components/Image";
 import ImageText from "./components/ImageText";
 
 const Main = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const scrollToBottom = () => {
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
+  };
+
   return (
     <div>
       <hr />
@@ -25,6 +33,12 @@ const Main = () => {
       <Text />
       <hr />
       <br />
+      <button className="scroll-button" onClick={scrollToTop}>
+        <i className="fas fa-arrow-up"></i>
+      </button>
+      <button className="scroll-button" onClick={scrollToBottom}>
+        <i className="fas fa-arrow-down"></i>
+      </button>
     </div>
   );
 };

@@ -389,3 +389,31 @@
   color: #666;
   line-height: 1.5;
 }
+
+
+/* Main.css */
+.scroll-button {
+  position: fixed;
+  right: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  z-index: 1000; /* 다른 요소 위에 표시되도록 z-index 설정 */
+}
+
+.scroll-button:hover {
+  background-color: #0056b3;
+}
+
+.scroll-button:first-of-type {
+  bottom: 60px; /* 첫 번째 버튼을 화면 아래에서 약간 위로 배치 */
+}
+
+.scroll-button:last-of-type {
+  bottom: 20px; /* 두 번째 버튼을 첫 번째 버튼 바로 아래에 배치 */
+}
