@@ -11,27 +11,23 @@ const Main = () => {
   };
 
   const scrollToBottom = () => {
-    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
   };
 
   return (
     <div>
-      <hr />
-      <br />
       <Slider />
-      <hr />
       <br />
-      <Image />
-      <hr />
-      <br />
-      <ImageText />
-      <hr />
-      <br />
-      <Banner />
-      <hr />
       <br />
       <Text />
-      <hr />
+      {/*<Image />*/}
+      {/*/<ImageText />*/}
+      <br />
+      <br />
+      <Banner />
       <br />
       <button className="scroll-button" onClick={scrollToTop}>
         <i className="fas fa-arrow-up"></i>
