@@ -288,10 +288,15 @@
 }
 
 /* text__inner */
+.text__inner.container {
+  margin: 70px auto;
+}
+
 .text__inner {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: 70px auto;
 }
 .text {
   width: 32%;
