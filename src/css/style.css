@@ -288,10 +288,15 @@
 }
 
 /* text__inner */
+.text__inner.container {
+  margin: 70px auto;
+}
+
 .text__inner {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin: 70px auto;
 }
 .text {
   width: 32%;
@@ -423,4 +428,30 @@
   height: 60vh; /* 적당한 크기로 조정 */
   border-radius: 20px; /* 테두리를 둥글게 만듦 */
   margin: auto; /* 화면 중앙에 위치하도록 조정 */
+}
+
+/* VideoPlayer */
+.scroll-icon-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transform: translateY(-300%);
+}
+
+.scroll-icon {
+  width: 75px;
+  height: auto;
+  animation: moveIcon 2s ease-in-out infinite; /* Animation for smooth movement */
+}
+
+@keyframes moveIcon {
+  0% {
+    transform: translateY(0); /* Start position */
+  }
+  50% {
+    transform: translateY(-10px); /* Middle position (slightly up) */
+  }
+  100% {
+    transform: translateY(0); /* End position (back to original) */
+  }
 }
