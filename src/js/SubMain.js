@@ -1,5 +1,6 @@
 import React from "react";
 import AccessInfo from "./AccessInfo";
+import Information from "./Information";
 import Recommend from "./Recommend";
 
 const SubMain = () => {
@@ -17,6 +18,8 @@ const SubMain = () => {
   return (
     <div>
       <AccessInfo />
+      <hr />
+      <Information />
       <hr />
       <Recommend />
       <hr />

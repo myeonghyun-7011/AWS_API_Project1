@@ -23,8 +23,6 @@ p {
 }
 
 
-
-
 /* Cpu */
 
 .info h2 {
@@ -33,9 +31,11 @@ p {
 }
 
 .info p {
-  padding-bottom: 30px;
+  font-size: 15px;
+  padding-bottom: 5px;
   margin: 5px 0;
 }
+
 
 .dashboard {
   display: flex;
@@ -59,7 +59,7 @@ p {
 }
 .chart {
   width: 15%;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 768px) {

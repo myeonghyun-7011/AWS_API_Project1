@@ -1,0 +1,32 @@
+.infod {
+  display: flex;
+  flex-direction: row; /* 수정된 부분: 세로에서 가로로 변경 */
+  justify-content: space-around; /* 수정된 부분: 각 컨테이너를 가로로 정렬 */
+  align-items: center;
+  min-height: 10px;
+  box-sizing: border-box;
+  padding-bottom: 10px;
+  font-size: 10px;
+}
+
+.Information-container {
+  width: 40%;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  text-align: center; /* 수정된 부분: 텍스트를 가운데 정렬 */
+}
+
+.Information-container h2 {
+  font-size: 20px;
+}
+
+.metric-info p {
+  font-size: 10px;
+}
+
+p {
+  font-size: 10px;
+}

@@ -199,7 +199,7 @@ const AccessInfo = () => {
   );
   return (
     <div className="info">
-      <h2>접근 정보</h2>
+      <h2>사용자 정보</h2>
       <div>
         <p>
           <b>지역:</b> {currentRegion}

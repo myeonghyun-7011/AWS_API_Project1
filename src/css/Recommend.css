@@ -3,9 +3,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  min-height: 40vh;
   box-sizing: border-box;
   padding-bottom: 10px;
+  padding-top: 5px;
 }
 .info h2{
   padding-bottom: 10px;
