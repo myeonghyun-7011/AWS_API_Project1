@@ -205,114 +205,116 @@ const AccessInfo = () => {
           <b>지역:</b> {currentRegion}
         </p>
       </div>
-      <div className="dashboard">
-        <div className="chart">
-          <h3>EC2 CPU 사용률 (평균)</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={ec2Metrics}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="averageCpu"
-                stroke="#8884d8"
-                name="CPUUtilization: Average"
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-        <div className="chart">
-          <h3>EC2 CPU 사용률 (최대)</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={ec2Metrics}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="maxCpu"
-                stroke="#82ca9d"
-                name="CPUUtilization: Max"
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-        <div className="chart">
-          <h3>EC2 CPU 사용률 (최소)</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={ec2Metrics}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="minCpu"
-                stroke="#ffc658"
-                name="CPUUtilization: Min"
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-        <div className="chart">
-          <h3>RDS CPU 사용률 (평균)</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={rdsMetrics}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="averageCpu"
-                stroke="#8884d8"
-                name="CPUUtilization: Average"
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-        <div className="chart">
-          <h3>RDS CPU 사용률 (최대)</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={rdsMetrics}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="maxCpu"
-                stroke="#82ca9d"
-                name="CPUUtilization: Max"
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-        <div className="chart">
-          <h3>RDS CPU 사용률 (최소)</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={rdsMetrics}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="minCpu"
-                stroke="#ffc658"
-                name="CPUUtilization: Min"
-              />
-            </LineChart>
-          </ResponsiveContainer>
+      <div className="chart-container">
+        <div className="dashboard">
+          <div className="chart">
+            <h3>EC2 CPU 사용률 (평균)</h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={ec2Metrics}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="averageCpu"
+                  stroke="#8884d8"
+                  name="CPUUtilization: Average"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="chart">
+            <h3>EC2 CPU 사용률 (최대)</h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={ec2Metrics}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="maxCpu"
+                  stroke="#82ca9d"
+                  name="CPUUtilization: Max"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="chart">
+            <h3>EC2 CPU 사용률 (최소)</h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={ec2Metrics}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="minCpu"
+                  stroke="#ffc658"
+                  name="CPUUtilization: Min"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="chart">
+            <h3>RDS CPU 사용률 (평균)</h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={rdsMetrics}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="averageCpu"
+                  stroke="#8884d8"
+                  name="CPUUtilization: Average"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="chart">
+            <h3>RDS CPU 사용률 (최대)</h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={rdsMetrics}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="maxCpu"
+                  stroke="#82ca9d"
+                  name="CPUUtilization: Max"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+          <div className="chart">
+            <h3>RDS CPU 사용률 (최소)</h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={rdsMetrics}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="minCpu"
+                  stroke="#ffc658"
+                  name="CPUUtilization: Min"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
     </div>
