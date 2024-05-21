@@ -5,6 +5,7 @@ import Banner from "./components/Banner";
 // import Image from "./components/Image";
 // import ImageText from "./components/ImageText";
 import Map from "./components/Map";
+import VideoPlayer from "./components/VideoPlayer";
 
 const Main = () => {
   const scrollToTop = () => {
@@ -20,7 +21,8 @@ const Main = () => {
 
   return (
     <div>
-      <Slider />
+      <VideoPlayer />
+      {/*<Slider />*/}
       <br />
       <br />
       <Text />
