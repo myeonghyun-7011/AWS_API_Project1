@@ -4,9 +4,10 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f4f4f9;
   padding: 20px;
   box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
 }
 
 h2 {
@@ -21,11 +22,10 @@ p {
   margin-bottom: 10px;
 }
 
+
+
+
 /* Cpu */
-.info {
-  width: 100%;
-  padding: 20px;
-}
 
 .info h2 {
   text-align: center;

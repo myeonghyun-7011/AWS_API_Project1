@@ -1,5 +1,6 @@
 import React from "react";
 import AccessInfo from "./AccessInfo";
+import Recommend from "./Recommend";
 
 const SubMain = () => {
   const scrollToTop = () => {
@@ -16,6 +17,9 @@ const SubMain = () => {
   return (
     <div>
       <AccessInfo />
+      <hr />
+      <Recommend />
+      <hr />
       <button className="scroll-button" onClick={scrollToTop}>
         <i className="fas fa-arrow-up"></i>
       </button>
