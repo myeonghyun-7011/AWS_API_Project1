@@ -13,6 +13,10 @@ const VideoPlayer = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleButtonClick = () => {
+    window.location.href = "/LoginForm";
+  };
+
   return (
     <div style={{ position: "relative" }}>
       <ReactPlayer
@@ -31,6 +35,9 @@ const VideoPlayer = () => {
       >
         <img src={scrollIcon} alt="Scroll Down" className="scroll-icon" />
       </div>
+      <button className="get-started-button" onClick={handleButtonClick}>
+        Get Started
+      </button>
     </div>
   );
 };
