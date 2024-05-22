@@ -4,25 +4,33 @@ const Image = (props) => {
   return (
     <section id="imageType" className={`imageType__wrap ${props.element}`}>
       <h2>{props.title}</h2>
-      <p>최적의 비용 맞춤 검색</p>
+      {/*<p>최적의 비용 맞춤 검색</p>*/}
       <div className="image__inner container">
         <article className="image img1">
-          <h3 className="image__title">강아지계의 연예인</h3>
+          <h3 className="image__title">EC2</h3>
           <p className="image__desc">
-            최근 연예인들 사이에서 키우는 강아지로 유명해진 비숑프리제는
-            생김새가 아주 작은 바빗과 매우 흡사하여 바비숑이라는
+            설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명
           </p>
-          <a className="image__btn" href="/">
+          <a
+            className="image__btn"
+            href="https://aws.amazon.com/ko/ec2/pricing/on-demand/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             자세히 보기
           </a>
         </article>
         <article className="image img2">
-          <h3 className="image__title">강아지계의 마스코트</h3>
+          <h3 className="image__title">RDS</h3>
           <p className="image__desc">
-            최근 연예인들 사이에서 키우는 강아지로 유명해진 비숑프리제는
-            생김새가 아주 작은 바빗과 매우 흡사하여 바비숑이라는
+            설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명
           </p>
-          <a className="image__btn yellow" href="/">
+          <a
+            className="image__btn yellow"
+            href="https://aws.amazon.com/ko/rds/pricing/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             자세히 보기
           </a>
         </article>
