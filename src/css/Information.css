@@ -1,7 +1,7 @@
 .infod {
   display: flex;
-  flex-direction: row; 
-  justify-content: space-around; 
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
   min-height: 10px;
   box-sizing: border-box;
@@ -10,24 +10,42 @@
 }
 
 .Information-container {
-  width: 40%;
-  margin-bottom: 20px;
+  width: 95%;
+  margin: 0px 45px 50px 45px;
   border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
+  border-radius: 30px;
+  padding: 45px;
   background-color: #f9f9f9;
-  text-align: center; 
+  text-align: center;
 }
 
 .Information-container h2 {
-  font-size: 20px;
-
+  font-family: "GangwonEdu_OTFBoldA";
+  font-size: 25px;
 }
 
-.metric-info p {
-  font-size: 15px;
+/* .metric-info p {
+}
+*/
+p.info-p {
+  letter-spacing: 0.5px;
+  font-family: "GangwonEdu_OTFBoldA";
+  font-size: 20px;
 }
 
 p {
   font-size: 15px;
+}
+
+.highlight {
+  background-color: antiquewhite;
+  padding: 7px 3px 2px 3px;
+  border-radius: 3px;
+}
+
+.custom-color {
+  padding: 8px 5px 2px 5px;
+  background-color: antiquewhite;
+  font-weight: 900;
+  color: #002ead;
 }
