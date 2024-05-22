@@ -18,11 +18,9 @@ const SubMain = () => {
   return (
     <div>
       <AccessInfo />
-      <hr />
       <Information />
       <hr />
       <Recommend />
-      <hr />
       <button className="scroll-button" onClick={scrollToTop}>
         <i className="fas fa-arrow-up"></i>
       </button>

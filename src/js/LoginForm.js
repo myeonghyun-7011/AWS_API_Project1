@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../css/LoginForm.css";
 import { useNavigate } from "react-router-dom";
+import { awsConfig } from "./aws-exports";
 
 const LoginForm = () => {
   const [accessKeyId, setAccessKeyId] = useState("");
@@ -18,12 +19,16 @@ const LoginForm = () => {
       return;
     }
 
-    // 서버로의 요청을 시뮬레이션하는 대신, 로그인 데이터를 콘솔에 출력합니다.
-    console.log("Access Key ID:", accessKeyId);
-    console.log("Access Key PW:", accessKeyPw);
-
-    // 로그인이 성공하면 "/" 경로로 이동합니다.
-    navigate("/AccessInfo");
+    // AWS 자격 증명과 입력된 값을 비교하여 검증합니다.
+    if (
+      accessKeyId === awsConfig.credentials.accessKeyId &&
+      accessKeyPw === awsConfig.credentials.secretAccessKey
+    ) {
+      console.log("로그인 성공");
+      navigate("/AccessInfo");
+    } else {
+      alert("Access 정보가 틀립니다.");
+    }
   };
 
   const handleRegionSelect = (region) => {
@@ -62,7 +67,6 @@ const LoginForm = () => {
 
   return (
     <div className="login-container">
-      {/*<h2>LOGIN</h2>*/}
       <div className={`region-select ${showRegionList ? "active" : ""}`}>
         {!selectedRegion && <p id="region_title_p">리전을 선택해주세요</p>}
         <button onClick={toggleRegionList}>

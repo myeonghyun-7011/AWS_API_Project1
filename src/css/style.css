@@ -428,6 +428,9 @@
   height: 60vh; /* 적당한 크기로 조정 */
   border-radius: 20px; /* 테두리를 둥글게 만듦 */
   margin: auto; /* 화면 중앙에 위치하도록 조정 */
+  display: flex; /* Flexbox 레이아웃 사용 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
 }
 
 /* VideoPlayer */

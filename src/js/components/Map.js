@@ -35,7 +35,7 @@ const Map = () => {
         for (const region of awsRegions) {
           const command = new SearchPlaceIndexForTextCommand({
             IndexName: 'myindex',
-            Text: region.name,
+            Text: region.label, // 변경된 부분: 지역 레이블을 사용하여 검색
             MaxResults: 1
           });
 
@@ -59,7 +59,7 @@ const Map = () => {
 
     // Cleanup function
     return () => {
-      // Cleanup code here, if any
+      // Cleanup 코드가 여기 들어갈 수 있습니다.
     };
   }, []);
 
@@ -82,7 +82,7 @@ const Map = () => {
   };
 
   const mapContainerStyle = {
-    width: '100%',
+    width: '80%',
     height: '100%'
   };
 
