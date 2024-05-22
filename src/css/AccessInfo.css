@@ -29,10 +29,13 @@ p {
 }
 
 .info p {
-  font-family: "GangwonEdu_OTFBoldA";
+  background-color: antiquewhite;
+  letter-spacing: 2px;
+  font-family: "Pretendard-Regular";
   font-size: 20px;
-  padding-bottom: 5px;
-  margin: 5px 0;
+  /* padding-bottom: 5px; */
+  margin: 5px 0px;
+  padding: 5px;
 }
 
 .dashboard {
