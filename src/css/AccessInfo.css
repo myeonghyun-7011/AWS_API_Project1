@@ -44,7 +44,7 @@ p {
 .dashboard h3 {
   font-family: "GangwonEdu_OTFBoldA";
   margin: 10px 0px 10px 45px;
-  font-size: 15px;
+  font-size: 17px;
   text-align: center;
 }
 
@@ -65,4 +65,8 @@ p {
   .chart-container {
     width: 100%;
   }
+}
+
+.recharts-legend-wrapper {
+  margin-left: 30px;
 }
