@@ -1,4 +1,28 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GangwonEdu_OTFBoldA";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .info {
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,15 +32,18 @@
   padding-bottom: 10px;
   padding-top: 5px;
 }
-.info h2{
+.info h2 {
+  font-size: 35px;
+  font-family: "GangwonEdu_OTFBoldA";
   padding-bottom: 30px;
 }
-.Recommend-container{
-  width: 100%;
+.Recommend-container {
+  margin: 0px 45px 0px 45px;
+  width: 89%;
   margin-bottom: 20px;
   border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
+  border-radius: 30px;
+  padding: 80px;
   background-color: #f9f9f9;
 }
 .Recommend-con {

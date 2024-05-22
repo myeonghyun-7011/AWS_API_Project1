@@ -117,9 +117,9 @@ const LoginForm = () => {
           <button type="submit">Search</button>
         </div>
 
-        <div className="forgot-password">
+        {/*<div className="forgot-password">
           비밀번호를 잊어버리셨나요? <a href="#">here</a>
-        </div>
+        </div>*/}
       </form>
     </div>
   );

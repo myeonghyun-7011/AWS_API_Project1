@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AWS from "aws-sdk";
-import "../css/Information.css"; 
+import "../css/Information.css";
 import { awsConfig } from "./aws-exports";
 
 // AWS SDK 초기화
@@ -38,7 +38,7 @@ const fetchMetrics = async (
   return new Promise((resolve, reject) => {
     cloudwatch.getMetricStatistics(params, (err, data) => {
       if (err) reject(err);
-      else resolve(data.Datapoints); 
+      else resolve(data.Datapoints);
     });
   });
 };
@@ -126,25 +126,53 @@ const Information = () => {
       <div className="infod">
         {cpuData.ec2 && (
           <div className="Information-container">
-            <h2>EC2 인스턴스 CPU 사용량</h2>
+            <h2>
+              <span className="highlight">EC2</span> 인스턴스 CPU 사용량
+            </h2>
             <div className="metric-info">
-              <p>평균값: {ec2Stats.average}</p>
-              <p>최댓값: {ec2Stats.maximum}</p>
-              <p>최솟값: {ec2Stats.minimum}</p>
+              <p className="info-p">
+                평균값 :{" "}
+                <span className="custom-color">{ec2Stats.average}</span>
+              </p>
+              <p className="info-p">
+                최댓값 :{" "}
+                <span className="custom-color">{ec2Stats.maximum}</span>
+              </p>
+              <p className="info-p">
+                최솟값 :{" "}
+                <span className="custom-color">{ec2Stats.minimum}</span>
+              </p>
             </div>
-            <p>EC2 인스턴스 유형: {ec2InstanceType}</p>
+            <p className="info-p">
+              EC2 인스턴스 유형 :{" "}
+              <span className="custom-color">{ec2InstanceType}</span>
+            </p>
           </div>
         )}
 
         {cpuData.rds && (
           <div className="Information-container">
-            <h2>RDS 인스턴스 CPU 사용량</h2>
+            <h2>
+              <span className="highlight">RDS</span> 인스턴스 CPU 사용량
+            </h2>
             <div className="metric-info">
-              <p>평균값: {rdsStats.average}</p>
-              <p>최댓값: {rdsStats.maximum}</p>
-              <p>최솟값: {rdsStats.minimum}</p>
+              <p className="info-p">
+                평균값 :{" "}
+                <span className="custom-color">{rdsStats.average}</span>
+              </p>
+              <p className="info-p">
+                최댓값 :{" "}
+                <span className="custom-color">{rdsStats.maximum}</span>
+              </p>
+              <p className="info-p">
+                최솟값 :{" "}
+                <span className="custom-color">{rdsStats.minimum}</span>
+              </p>
             </div>
-            <p>RDS 인스턴스 유형: {rdsInstanceType}</p>
+            <p className="info-p">
+              RDS 인스턴스 유형 :{" "}
+              <span className="custom-color">{rdsInstanceType}</span>
+            </p>
           </div>
         )}
       </div>
