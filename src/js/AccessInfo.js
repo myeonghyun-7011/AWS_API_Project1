@@ -202,7 +202,7 @@ const AccessInfo = () => {
       <h2>사용자 정보</h2>
       <div>
         <p>
-          <b>지역:</b> {currentRegion}
+          <b>리전 :</b> {currentRegion}
         </p>
       </div>
       <div className="chart-container">
