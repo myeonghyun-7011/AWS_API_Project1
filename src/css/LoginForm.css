@@ -36,7 +36,12 @@
 }
 
 p#region_title_p {
-  font-family: "GangwonEdu_OTFBoldA";
+  color: #002ead;
+  letter-spacing: 2px;
+  font-weight: 600;
+  font-family: "Pretendard-Regular";
+  margin: 20px 0 10px 0;
+  font-size: 17px;
 }
 
 .region-select {
@@ -45,8 +50,8 @@ p#region_title_p {
 }
 
 .region-select button {
-  font-size: 16px;
-  font-family: "GangwonEdu_OTFBoldA";
+  font-size: 17px;
+  font-family: "Pretendard-Regular";
   width: 100%;
   padding: 10px;
   border-radius: 30px;
@@ -103,7 +108,7 @@ p#region_title_p {
 }
 
 .custom-input input {
-  font-size: 11px;
+  font-size: 15px;
   width: 95%;
   padding: 10px;
   border-radius: 30px;
@@ -112,8 +117,8 @@ p#region_title_p {
 }
 
 .custom-input button {
-  font-family: "GangwonEdu_OTFBoldA";
-  letter-spacing: 1.5px;
+  font-family: "Pretendard-Regular";
+  letter-spacing: 2.5px;
   margin-top: 25px;
   font-weight: 900;
   font-size: 21px;
@@ -138,9 +143,11 @@ p#region_title_p {
 }
 
 p#accesskey {
-  font-family: "GangwonEdu_OTFBoldA";
-  color: #000000;
-  margin: 3px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  font-family: "Pretendard-Regular";
+  color: #002ead;
+  margin: 10px;
 }
 
 .forgot-password {
