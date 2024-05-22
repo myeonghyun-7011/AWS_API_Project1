@@ -5,7 +5,7 @@ const Banner = (props) => {
     <section id="bannerType" className={`banner__wrap ${props.element}`}>
       <h2 className="blind">{props.title}</h2>
       <div className="banner__inner">
-        <h3 className="title">ADAPTER GitHub</h3>
+        {/*<h3 className="title">ADAPTER GitHub</h3>*/}
         <p className="desc">
           <span>ADAPTER 팀에 대해 좀 더 알고 싶다면?</span>
           <br />

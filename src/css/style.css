@@ -144,7 +144,7 @@
 .image {
   border-radius: 10px;
   width: 45%;
-  height: 400px;
+  height: 425px;
   padding: 200px 30px 30px 30px;
   box-sizing: border-box;
   color: #fff;
@@ -157,24 +157,24 @@
 }
 .image__title {
   margin: 20px 0 5px 0;
-  font-family: "GangwonEdu_OTFBoldA";
+  font-family: "Pretendard-Regular";
   color: #333333;
-  font-size: 40px;
+  font-size: 27px;
   margin-bottom: 5px;
 }
-.image__desc {
-  font-size: 16px;
 
+.image__desc {
+  height: auto; /* 높이를 자동으로 설정 */
+  /* width: 100%; */
+  font-size: 16px;
   line-height: 1.4;
   font-weight: 300;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  margin-bottom: 20px;
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis; */
+  display: block; /* 블록 요소로 설정 */
+  /* margin-bottom: 20px; */
 }
+
 .image__btn {
   font-size: 16px;
   font-weight: 300;
@@ -310,7 +310,7 @@
 .text_sub_title {
   margin-top: 70px !important;
   font-size: 45px;
-  font-family: "GangwonEdu_OTFBoldA";
+  font-family: "Pretendard-Regular";
   margin-bottom: 70px !important;
 }
 
@@ -394,6 +394,9 @@
 }
 
 /* footer__menu */
+.footer__inner.container {
+  width: 100%;
+}
 .footer__menu {
   display: flex;
   margin-bottom: 70px;
@@ -412,11 +415,17 @@
   display: block;
 }
 .footer__right {
-  font-size: 17px;
+  font-size: 15px;
   text-align: center;
-  padding: 40px 0;
+  padding: 40px 0 0 0;
   color: #a0a0a0;
   line-height: 1.5;
+}
+
+footer#footerType {
+  /*border-top: solid 0.5px #f5f5f5;*/
+  font-family: "sans-serif";
+  padding: 45px 0 70px 0;
 }
 
 /* Main.css */
@@ -458,6 +467,7 @@
   display: flex; /* Flexbox 레이아웃 사용 */
   justify-content: center; /* 수평 중앙 정렬 */
   align-items: center; /* 수직 중앙 정렬 */
+  margin-bottom: 70px;
 }
 
 /* VideoPlayer */

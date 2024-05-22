@@ -29,10 +29,13 @@ p {
 }
 
 .info p {
-  font-family: "GangwonEdu_OTFBoldA";
+  background-color: antiquewhite;
+  letter-spacing: 2px;
+  font-family: "Pretendard-Regular";
   font-size: 20px;
-  padding-bottom: 5px;
-  margin: 5px 0;
+  /* padding-bottom: 5px; */
+  margin: 5px 0px;
+  padding: 5px;
 }
 
 .dashboard {
@@ -44,7 +47,7 @@ p {
 .dashboard h3 {
   font-family: "GangwonEdu_OTFBoldA";
   margin: 10px 0px 10px 45px;
-  font-size: 15px;
+  font-size: 17px;
   text-align: center;
 }
 
@@ -65,4 +68,8 @@ p {
   .chart-container {
     width: 100%;
   }
+}
+
+.recharts-legend-wrapper {
+  margin-left: 30px;
 }

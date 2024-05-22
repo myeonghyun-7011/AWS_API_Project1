@@ -6,8 +6,8 @@ const Footer = (props) => {
       <h2 className="blind">푸터 영역</h2>
       <div className="footer__inner container">
         <div className="footer__right">
-          KAKAO CLOUD ENGINEER 4th FINAL PROJECT <br />
-          ADAPTER ⓒ 2024 All Rights Reserved
+          ADAPTER ⓒ 2024 All Rights Reserved. Kakao Cloud Engineer 4th Final
+          Project
         </div>
       </div>
     </footer>
