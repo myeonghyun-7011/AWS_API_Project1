@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import scrollIcon from "../img/scroll_w.png";
+import LoadingSpinner from "./LoadingSpinner";
 
 const VideoPlayer = () => {
   const [scrollOffset, setScrollOffset] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setScrollOffset((prevOffset) => (prevOffset === 10 ? 0 : 10));
     }, 10000);
 
-    return () => clearInterval(interval);
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
   }, []);
 
   const handleButtonClick = () => {
@@ -19,6 +28,7 @@ const VideoPlayer = () => {
 
   return (
     <div style={{ position: "relative" }}>
+      {loading && <LoadingSpinner />}
       <ReactPlayer
         url="https://myvideo-1.s3.ap-northeast-1.amazonaws.com/video/video1.mp4"
         padding-left="10px"
