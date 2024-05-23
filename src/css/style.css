@@ -519,3 +519,54 @@ footer#footerType {
   color: white;
   background-color: #333333;
 }
+
+/* Loading inner */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(103, 103, 103, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #f7e600;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+.loading-text {
+  border-radius: 15px;
+  padding: 0px 20px 3px 20px;
+  background-color: white;
+  font-family: "Pretendard-Regular";
+  position: absolute;
+  top: 58%;
+  left: 52.5%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  color: #333333;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%);
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%);
+    transform: rotate(360deg);
+  }
+}
