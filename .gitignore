@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 /src/js/aws-exports.js
-/public/videos
+
 
 # testing
 /coverage

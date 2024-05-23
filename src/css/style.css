@@ -470,7 +470,8 @@ footer#footerType {
   margin-bottom: 70px;
 }
 
-/* VideoPlayer */
+/* [main] VideoPlayer */
+
 .scroll-icon-container {
   position: absolute;
   left: 50%;
@@ -481,17 +482,40 @@ footer#footerType {
 .scroll-icon {
   width: 75px;
   height: auto;
-  animation: moveIcon 2s ease-in-out infinite; /* Animation for smooth movement */
+  animation: moveIcon 2s ease-in-out infinite;
 }
 
 @keyframes moveIcon {
   0% {
-    transform: translateY(0); /* Start position */
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px); /* Middle position (slightly up) */
+    transform: translateY(-10px);
   }
   100% {
-    transform: translateY(0); /* End position (back to original) */
+    transform: translateY(0);
   }
+}
+
+.get-started-button {
+  letter-spacing: 5px;
+  position: absolute;
+  top: 35%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  padding: 15px 23px;
+  font-size: 14px;
+  color: #333333;
+  background-color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.get-started-button:hover {
+  font-weight: normal;
+  color: white;
+  background-color: #333333;
 }

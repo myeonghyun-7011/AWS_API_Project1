@@ -13,10 +13,14 @@ const VideoPlayer = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleButtonClick = () => {
+    window.location.href = "/LoginForm";
+  };
+
   return (
     <div style={{ position: "relative" }}>
       <ReactPlayer
-        url={process.env.PUBLIC_URL + "/videos/video1.mp4"}
+        url="https://myvideo-1.s3.ap-northeast-1.amazonaws.com/video/video1.mp4"
         padding-left="10px"
         width="99%"
         height="65%"
@@ -31,6 +35,9 @@ const VideoPlayer = () => {
       >
         <img src={scrollIcon} alt="Scroll Down" className="scroll-icon" />
       </div>
+      <button className="get-started-button" onClick={handleButtonClick}>
+        Get Started
+      </button>
     </div>
   );
 };
