@@ -13,10 +13,6 @@ RUN npm install --only=prod
 # 소스코드 복사
 COPY . .
 
-# 동영상 파일 복사
-COPY public/videos/video1.mp4 /app/public/videos/
-
-
 # 이미지 파일 복사
 COPY src/img/* /app/src/img/
 COPY src/js/img/* /app/src/js/img/
