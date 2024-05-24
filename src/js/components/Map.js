@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { LocationClient, SearchPlaceIndexForTextCommand } from '@aws-sdk/client-location';
-import { awsConfig } from '../aws-exports'; // aws-exports.js에서 awsConfig를 import합니다.
+import { awsConfig, mapConfig } from '../aws-exports'; // aws-exports.js에서 awsConfig를 import합니다.
 
 const Map = () => {
   const [locations, setLocations] = useState([]);
+  const { mapKey } = mapConfig; // awsConfig에서 mapKey를 가져옵니다.
 
   useEffect(() => {
     const fetchLocations = async () => {
@@ -88,7 +89,7 @@ const Map = () => {
 
   return (
     <div className="map-container">
-      <LoadScript googleMapsApiKey="AIzaSyCNl2cKkT1Q3aLzqE8OJAtE-RXNowXPsOA">
+      <LoadScript googleMapsApiKey={mapKey}>
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
           center={calculateAverageLocation()} // 평균 위치를 지도의 중심으로 설정합니다.
