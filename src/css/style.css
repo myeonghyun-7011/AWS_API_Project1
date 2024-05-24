@@ -457,16 +457,16 @@ footer#footerType {
   bottom: 20px; /* 두 번째 버튼을 첫 번째 버튼 바로 아래에 배치 */
 }
 
-/* 지도 컨테이너 스타일 */
+/* Map__inner*/
 .map-container {
   padding-top: 40px;
-  width: 80%; /* 적당한 크기로 조정 */
-  height: 60vh; /* 적당한 크기로 조정 */
-  border-radius: 20px; /* 테두리를 둥글게 만듦 */
-  margin: auto; /* 화면 중앙에 위치하도록 조정 */
-  display: flex; /* Flexbox 레이아웃 사용 */
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
+  width: 80%;
+  height: 60vh;
+  border-radius: 20px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 70px;
 }
 
@@ -498,16 +498,18 @@ footer#footerType {
 }
 
 .get-started-button {
-  letter-spacing: 5px;
+  font-family: "Pretendard-Regular";
+  letter-spacing: 2px;
   position: absolute;
-  top: 35%;
+  top: 40%;
   left: 52%;
   transform: translate(-50%, -50%);
-  padding: 15px 23px;
-  font-size: 14px;
+  padding: 15px 35px;
+  font-size: 16px;
   color: #333333;
-  background-color: white;
-  border: none;
+  border: solid 3.5px white;
+  /* background-color: white; */
+  /* border: none; */
   border-radius: 30px;
   cursor: pointer;
   z-index: 10;
@@ -515,9 +517,32 @@ footer#footerType {
 }
 
 .get-started-button:hover {
+  border: solid 3px #333333;
   font-weight: normal;
   color: white;
   background-color: #333333;
+}
+
+.text-on-the-button {
+  position: absolute;
+  top: 28%;
+  left: 51.5%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+}
+
+.intro-text {
+  font-weight: bold;
+  font-size: 45px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.sub-text {
+  font-size: 18px;
+  color: white;
+  margin-bottom: 20px;
 }
 
 /* Loading inner */
@@ -527,7 +552,7 @@ footer#footerType {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(103, 103, 103, 0.8);
+  background-color: rgba(64, 64, 64, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;

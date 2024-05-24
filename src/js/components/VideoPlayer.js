@@ -45,6 +45,10 @@ const VideoPlayer = () => {
       >
         <img src={scrollIcon} alt="Scroll Down" className="scroll-icon" />
       </div>
+      <div className="text-on-the-button">
+        <p className="intro-text">AWS Instance Optimization Service</p>
+        <p className="sub-text">ADAPTER의 서비스를 무료로 체험해보세요</p>
+      </div>
       <button className="get-started-button" onClick={handleButtonClick}>
         Get Started
       </button>
