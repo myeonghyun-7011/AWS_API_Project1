@@ -498,16 +498,18 @@ footer#footerType {
 }
 
 .get-started-button {
-  letter-spacing: 5px;
+  font-family: "Pretendard-Regular";
+  letter-spacing: 2px;
   position: absolute;
-  top: 35%;
+  top: 40%;
   left: 52%;
   transform: translate(-50%, -50%);
-  padding: 15px 23px;
-  font-size: 14px;
+  padding: 15px 35px;
+  font-size: 16px;
   color: #333333;
-  background-color: white;
-  border: none;
+  border: solid 3.5px white;
+  /* background-color: white; */
+  /* border: none; */
   border-radius: 30px;
   cursor: pointer;
   z-index: 10;
@@ -515,9 +517,32 @@ footer#footerType {
 }
 
 .get-started-button:hover {
+  border: solid 3px #333333;
   font-weight: normal;
   color: white;
   background-color: #333333;
+}
+
+.text-on-the-button {
+  position: absolute;
+  top: 28%;
+  left: 51.5%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+}
+
+.intro-text {
+  font-weight: bold;
+  font-size: 45px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.sub-text {
+  font-size: 18px;
+  color: white;
+  margin-bottom: 20px;
 }
 
 /* Loading inner */
