@@ -3,12 +3,12 @@ import LoginForm from "./LoginForm";
 import Main from "./Main";
 import SubMain from "./SubMain";
 
-const Router = () => {
+const Router = ({ setResponseData, responseData }) => {
   return (
     <Routes>
       <Route path="/" element={<Main />} />
-      <Route path="/LoginForm" element={<LoginForm />} />
-      <Route path="/AccessInfo" element={<SubMain />} />
+      <Route path="/LoginForm" element={<LoginForm setResponseData={setResponseData} />} />
+      <Route path="/AccessInfo" element={<SubMain responseData={responseData} />} />
     </Routes>
   );
 };

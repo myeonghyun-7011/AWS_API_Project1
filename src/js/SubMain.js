@@ -3,7 +3,7 @@ import AccessInfo from "./AccessInfo";
 import Information from "./Information";
 import Recommend from "./Recommend";
 
-const SubMain = () => {
+const SubMain = ({ responseData }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -20,7 +20,7 @@ const SubMain = () => {
       <AccessInfo />
       <Information />
       <hr />
-      <Recommend />
+      <Recommend responseData={responseData} />
       <button className="scroll-button" onClick={scrollToTop}>
         <i className="fas fa-arrow-up"></i>
       </button>

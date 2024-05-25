@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../css/App.css';
 import '../css/style.css';
 import '../css/reset.css';
@@ -8,10 +8,12 @@ import Footer from './Footer';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function App() {
+  const [responseData, setResponseData] = useState(null);
+
   return (
     <div className="App">
       <Header />
-      <Router />
+      <Router setResponseData={setResponseData} responseData={responseData} />
       <Footer />
     </div>
   );

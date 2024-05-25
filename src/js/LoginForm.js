@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import "../css/LoginForm.css";
 import { useNavigate } from "react-router-dom";
-import { awsConfig } from "./aws-exports";
+import axios from "axios";
 
-const LoginForm = () => {
-  const [accessKeyId, setAccessKeyId] = useState("");
-  const [accessKeyPw, setAccessKeyPw] = useState("");
+const LoginForm = ({ setResponseData }) => {
+  const [access_key_id, setAccessKeyId] = useState("");
+  const [secret_access_key, setAccessKeyPw] = useState("");
   const [showRegionList, setShowRegionList] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!selectedRegion) {
@@ -19,21 +19,24 @@ const LoginForm = () => {
       return;
     }
 
-    // AWS 자격 증명과 입력된 값을 비교하여 검증합니다.
-    if (
-      accessKeyId === awsConfig.credentials.accessKeyId &&
-      accessKeyPw === awsConfig.credentials.secretAccessKey
-    ) {
-      console.log("로그인 성공");
+    try {
+      const response = await axios.post("http://54.95.82.122:8000/api/metrics", {
+        access_key_id,
+        secret_access_key,
+        region_name: selectedRegion,
+      });
+
+      setResponseData(response.data);
       navigate("/AccessInfo");
-    } else {
-      alert("Access 정보가 틀립니다.");
+    } catch (error) {
+      console.error("Error submitting data", error);
+      alert("Error submitting data");
     }
   };
 
-  const handleRegionSelect = (region) => {
-    if (region === "ap-northeast-1") {
-      setSelectedRegion(region);
+  const handleRegionSelect = (region_name) => {
+    if (region_name === "ap-northeast-1") {
+      setSelectedRegion(region_name);
       setShowRegionList(false);
       setAlertMessage("");
     } else {
@@ -46,7 +49,7 @@ const LoginForm = () => {
     setShowRegionList((prevState) => !prevState);
   };
 
-  const regions = [
+  const region_name = [
     { name: "리전을 선택해주세요.", value: "null" },
     { name: "미국 동부 (버지니아 북부)", value: "us-east-1" },
     { name: "미국 동부 (오하이오)", value: "us-east-2" },
@@ -74,52 +77,48 @@ const LoginForm = () => {
         </button>
         {!selectedRegion && <p>{alertMessage}</p>}
         <div className="region-list">
-          {regions.map((region, index) => (
+          {region_name.map((region_name, index) => (
             <button
               key={index}
-              onClick={() => handleRegionSelect(region.value)}
+              onClick={() => handleRegionSelect(region_name.value)}
               disabled={
                 selectedRegion === "ap-northeast-1" &&
-                region.value !== "ap-northeast-1"
+                region_name.value !== "ap-northeast-1"
               }
             >
-              {region.name}
+              {region_name.name}
             </button>
           ))}
         </div>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="custom-input">
-          <label htmlFor="accessKeyId">
-            <p id="accesskey">ACCESS_KEY_ID</p>
+          <label htmlFor="access_key_id">
+            <p id="access_key_id">ACCESS_KEY_ID</p>
           </label>
           <input
             type="text"
-            id="accessKeyId"
+            id="access_key_id"
             placeholder="Access Key ID를 입력하세요"
-            value={accessKeyId}
+            value={access_key_id}
             onChange={(e) => setAccessKeyId(e.target.value)}
             required
           />
 
-          <label htmlFor="accessKeyPw">
+          <label htmlFor="secret_access_key">
             <p id="accesskey">ACCESS_KEY_PW</p>
           </label>
           <input
             type="password"
-            id="accessKeyPw"
+            id="secret_access_key"
             placeholder="Access Key PW를 입력하세요"
-            value={accessKeyPw}
+            value={secret_access_key}
             onChange={(e) => setAccessKeyPw(e.target.value)}
             required
           />
 
           <button type="submit">Search</button>
         </div>
-
-        {/*<div className="forgot-password">
-          비밀번호를 잊어버리셨나요? <a href="#">here</a>
-        </div>*/}
       </form>
     </div>
   );
