@@ -1,9 +1,8 @@
 import React from "react";
-//import Slider from "./components/Slider";
 import Text from "./components/Text";
 import Banner from "./components/Banner";
 import Image from "./components/Image";
-// import ImageText from "./components/ImageText";
+import MapText from "./components/MapText";
 import Map from "./components/Map";
 import VideoPlayer from "./components/VideoPlayer";
 
@@ -22,17 +21,14 @@ const Main = () => {
   return (
     <div>
       <VideoPlayer />
-      {/*<Slider />*/}
       <br />
       <br />
       <Text />
       <Image />
-      {/*/<ImageText />*/}
-      <br />
+      <MapText />
+      <Map />
       <br />
       <Banner />
-      <br />
-      <Map />
       <button className="scroll-button" onClick={scrollToTop}>
         <i className="fas fa-arrow-up"></i>
       </button>
