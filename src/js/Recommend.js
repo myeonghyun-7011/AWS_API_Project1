@@ -25,12 +25,6 @@ const Recommend = ({ responseData }) => {
                 <p>Instance Type: {instance.instance_type}</p>
                 <p>Instance Name: {instance.instance_name}</p> {/* 수정된 부분 */}
                 <p>State: {instance.state}</p>
-                <p>Metrics:</p>
-                <ul>
-                  <li>Minimum: {instance.metrics.Minimum}</li>
-                  <li>Maximum: {instance.metrics.Maximum}</li>
-                  <li>Average: {instance.metrics.Average}</li>
-                </ul>
                 <p>Recommendations:</p>
                 {instance.reco && instance.reco.length > 0 ? (
                   instance.reco.map((recommendation, rIdx) => (
@@ -55,7 +49,7 @@ const Recommend = ({ responseData }) => {
                 <p>DB Instance Class: {instance.db_instance_class}</p>
                 <p>Engine: {instance.engine}</p>
                 <p>Status: {instance.db_instance_status}</p>
-                <p>Metrics:</p>
+                {/* <p>Metrics:</p>
                 <ul>
                   <li>CPU Utilization:</li>
                   <ul>
@@ -75,7 +69,7 @@ const Recommend = ({ responseData }) => {
                     <li>Maximum: {instance.metrics.FreeStorageSpace.Maximum}</li>
                     <li>Average: {instance.metrics.FreeStorageSpace.Average}</li>
                   </ul>
-                </ul>
+                </ul> */}
                 <p>Recommendations:</p>
                 {instance.reco && instance.reco.length > 0 ? (
                   instance.reco.map((recommendation, rIdx) => (
