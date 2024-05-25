@@ -23,6 +23,7 @@ const Recommend = ({ responseData }) => {
               <div className="Recommend-instance">
                 <p>Instance ID: {instance.instance_id}</p>
                 <p>Instance Type: {instance.instance_type}</p>
+                <p>Instance Name: {instance.instance_name}</p> {/* 수정된 부분 */}
                 <p>State: {instance.state}</p>
                 <p>Metrics:</p>
                 <ul>
