@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import AWS from "aws-sdk";
 import "../css/AccessInfo.css";
-import { awsConfig } from "./aws-exports";
 import LoadingAccessInfo from "./components/LoadingAccessInfo";
 import {
   LineChart,
@@ -16,86 +14,117 @@ import {
 } from "recharts";
 
 const AccessInfo = () => {
-  const location = useLocation();
-  const { selectedRegion } = location.state || {};
+  const [ec2InstanceIds, setEc2InstanceIds] = useState([]);
+  const [rdsInstanceIds, setRdsInstanceIds] = useState([]);
   const [ec2Metrics, setEc2Metrics] = useState([]);
   const [rdsMetrics, setRdsMetrics] = useState([]);
-  const [currentRegion, setCurrentRegion] = useState("");
+  const [currentRegion, setCurrentRegion] = useState("ap-northeast-1");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchRegionName = async () => {
+    const fetchInstanceIds = async () => {
+
+      // -----------------------------------------------------------------------------------------------
+
+      const ec2 = new AWS.EC2();
+      const ec2Params = {
+        Filters: [{ Name: "instance-state-name", Values: ["running"] }],
+      };
+
       try {
-        AWS.config.update({
-          region: awsConfig.region,
-          credentials: new AWS.Credentials(
-            awsConfig.credentials.accessKeyId,
-            awsConfig.credentials.secretAccessKey
-          ),
+        const ec2Data = await ec2.describeInstances(ec2Params).promise();
+        const ec2Instances = ec2Data.Reservations.flatMap(
+          (reservation, index) =>
+            reservation.Instances.map((instance) => ({
+              id: instance.InstanceId,
+              name:
+                instance.Tags.find((tag) => tag.Key === "Name")?.Value ||
+                instance.InstanceId,
+              color: getRandomColor(index), // EC2 인스턴스별로 랜덤 색상 할당
+            }))
+        );
+        setEc2InstanceIds(ec2Instances);
+      } catch (error) {
+        console.error("EC2 인스턴스 ID 가져오기 오류:", error);
+      }
+
+      // --------------------------------------------------------------------------------------
+
+      const rds = new AWS.RDS();
+      const rdsParams = {};
+
+      try {
+        const rdsData = await rds.describeDBInstances(rdsParams).promise();
+        const rdsInstances = rdsData.DBInstances.map((instance, index) => ({
+          id: instance.DBInstanceIdentifier,
+          name: instance.DBInstanceIdentifier,
+          color: getRandomColor(index), // RDS 인스턴스별로 랜덤 색상 할당
+        }));
+        setRdsInstanceIds(rdsInstances);
+      } catch (error) {
+        console.error("RDS 인스턴스 ID 가져오기 오류:", error);
+      }
+    };
+
+    // ----------------------------------------------------------------------------------------------
+    fetchInstanceIds();
+  }, []);
+
+  useEffect(() => {
+    const fetchMetrics = async (region) => {
+      if (ec2InstanceIds.length === 0 && rdsInstanceIds.length === 0) return;
+
+      try {
+        // EC2 지표 가져오기
+        const ec2DataPromises = ec2InstanceIds.map(async (instance) => {
+          const ec2Data = await getMetrics(
+            "AWS/EC2",
+            "InstanceId",
+            instance.id,
+            region
+          );
+          return { name: instance.name, color: instance.color, data: ec2Data };
         });
 
-        const ec2 = new AWS.EC2();
-        const response = await ec2.describeRegions().promise();
-        const regions = response.Regions.map((region) => region.RegionName);
+        const ec2DataResults = await Promise.all(ec2DataPromises);
 
-        if (selectedRegion && regions.includes(selectedRegion)) {
-          setCurrentRegion(selectedRegion);
-          await fetchMetrics(selectedRegion);
-        } else {
-          setCurrentRegion("Tokyo");
-          await fetchMetrics("ap-northeast-1");
-        }
+        const ec2MetricsData = ec2DataResults.map((instanceData) => ({
+          name: instanceData.name,
+          color: instanceData.color,
+          metrics: processMetrics(instanceData.data),
+        }));
+
+        setEc2Metrics(ec2MetricsData);
+
+        // RDS 지표 가져오기
+        const rdsDataPromises = rdsInstanceIds.map(async (instance) => {
+          const rdsData = await getMetrics(
+            "AWS/RDS",
+            "DBInstanceIdentifier",
+            instance.id,
+            region
+          );
+          return { name: instance.name, color: instance.color, data: rdsData };
+        });
+
+        const rdsDataResults = await Promise.all(rdsDataPromises);
+
+        const rdsMetricsData = rdsDataResults.map((instanceData) => ({
+          name: instanceData.name,
+          color: instanceData.color,
+          metrics: processMetrics(instanceData.data),
+        }));
+
+        setRdsMetrics(rdsMetricsData);
       } catch (error) {
-        console.error("리전 가져오기 오류:", error);
-        setCurrentRegion("Unknown");
+        console.error("지표 가져오기 오류:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchRegionName();
-  }, [selectedRegion]);
-
-  const fetchMetrics = async (region) => {
-    try {
-      const instanceIds = [
-        { id: "i-0eefd77085740ba65", name: "redhat", color: "#ff0000" },
-        { id: "i-0a07c858371af5e0f", name: "suse", color: "#00ff00" },
-        { id: "i-03b30f89868eb4d2f", name: "test1", color: "#0000ff" },
-        { id: "i-068d3a5e5489727a7", name: "test123", color: "#ff00ff" },
-      ];
-
-      const ec2DataPromises = instanceIds.map(async (instance) => {
-        const ec2Data = await getMetrics(
-          "AWS/EC2",
-          "InstanceId",
-          instance.id,
-          region
-        );
-        return { name: instance.name, color: instance.color, data: ec2Data };
-      });
-
-      const ec2DataResults = await Promise.all(ec2DataPromises);
-
-      const ec2MetricsData = ec2DataResults.map((instanceData) => ({
-        name: instanceData.name,
-        color: instanceData.color,
-        metrics: processMetrics(instanceData.data),
-      }));
-
-      setEc2Metrics(ec2MetricsData);
-
-      const rdsData = await getMetrics(
-        "AWS/RDS",
-        "DBInstanceIdentifier",
-        "mydb12",
-        region
-      );
-      setRdsMetrics(processMetrics(rdsData));
-    } catch (error) {
-      console.error("지표 가져오기 오류:", error);
-    }
-  };
+    fetchMetrics(currentRegion);
+  }, [currentRegion, ec2InstanceIds, rdsInstanceIds]);
 
   const getMetrics = async (
     namespace,
@@ -240,6 +269,22 @@ const AccessInfo = () => {
     return combined;
   };
 
+  // 랜덤 색상을 생성하는 함수
+  const getRandomColor = (index) => {
+    const colors = [
+      "#8884d8",
+      "#82ca9d",
+      "#ffc658",
+      "#8dd1e1",
+      "#a4de6c",
+      "#d0ed57",
+      "#ff6961",
+      "#ff5051",
+    ];
+
+    return colors[index % colors.length];
+  };
+
   return (
     <div className="info">
       {loading ? (
@@ -259,76 +304,55 @@ const AccessInfo = () => {
                 "EC2 CPU 사용률 (평균)",
                 ec2Metrics.map((metricData) => `averageCpu${metricData.name}`),
                 ec2Metrics.map((metricData) => metricData.color),
-                ec2Metrics.map((metricData) => `CPUUtilization: ${metricData.name} (평균)`)
+                ec2Metrics.map(
+                  (metricData) => `CPUUtilization: ${metricData.name} (평균)`
+                )
               )}
               {renderLineChart(
                 combineMetrics(ec2Metrics, "maxCpu"),
                 "EC2 CPU 사용률 (최대)",
                 ec2Metrics.map((metricData) => `maxCpu${metricData.name}`),
                 ec2Metrics.map((metricData) => metricData.color),
-                ec2Metrics.map((metricData) => `CPUUtilization: ${metricData.name} (최대)`)
+                ec2Metrics.map(
+                  (metricData) => `CPUUtilization: ${metricData.name} (최대)`
+                )
               )}
               {renderLineChart(
                 combineMetrics(ec2Metrics, "minCpu"),
                 "EC2 CPU 사용률 (최소)",
                 ec2Metrics.map((metricData) => `minCpu${metricData.name}`),
                 ec2Metrics.map((metricData) => metricData.color),
-                ec2Metrics.map((metricData) => `CPUUtilization: ${metricData.name} (최소)`)
+                ec2Metrics.map(
+                  (metricData) => `CPUUtilization: ${metricData.name} (최소)`
+                )
               )}
-              <div className="chart">
-                <h3>RDS CPU 사용률 (평균)</h3>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={rdsMetrics}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line
-                      type="monotone"
-                      dataKey="averageCpu"
-                      stroke="#8884d8"
-                      name="CPUUtilization: Average"
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-              <div className="chart">
-                <h3>RDS CPU 사용률 (최대)</h3>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={rdsMetrics}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line
-                      type="monotone"
-                      dataKey="maxCpu"
-                      stroke="#82ca9d"
-                      name="CPUUtilization: Max"
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-              <div className="chart">
-                <h3>RDS CPU 사용률 (최소)</h3>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={rdsMetrics}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line
-                      type="monotone"
-                      dataKey="minCpu"
-                      stroke="#ffc658"
-                      name="CPUUtilization: Min"
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
+              {renderLineChart(
+                combineMetrics(rdsMetrics, "averageCpu"),
+                "RDS CPU 사용률 (평균)",
+                rdsMetrics.map((metricData) => `averageCpu${metricData.name}`),
+                rdsMetrics.map((metricData) => metricData.color),
+                rdsMetrics.map(
+                  (metricData) => `CPUUtilization: ${metricData.name} (평균)`
+                )
+              )}
+              {renderLineChart(
+                combineMetrics(rdsMetrics, "maxCpu"),
+                "RDS CPU 사용률 (최대)",
+                rdsMetrics.map((metricData) => `maxCpu${metricData.name}`),
+                rdsMetrics.map((metricData) => metricData.color),
+                rdsMetrics.map(
+                  (metricData) => `CPUUtilization: ${metricData.name} (최대)`
+                )
+              )}
+              {renderLineChart(
+                combineMetrics(rdsMetrics, "minCpu"),
+                "RDS CPU 사용률 (최소)",
+                rdsMetrics.map((metricData) => `minCpu${metricData.name}`),
+                rdsMetrics.map((metricData) => metricData.color),
+                rdsMetrics.map(
+                  (metricData) => `CPUUtilization: ${metricData.name} (최소)`
+                )
+              )}
             </div>
           </div>
         </>

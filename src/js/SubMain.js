@@ -17,8 +17,8 @@ const SubMain = ({ responseData }) => {
 
   return (
     <div>
-      <AccessInfo />
-      <Information />
+      <AccessInfo responseData={responseData} />
+      <Information responseData={responseData} />
       <hr />
       <Recommend responseData={responseData} />
       <button className="scroll-button" onClick={scrollToTop}>

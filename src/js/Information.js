@@ -1,88 +1,71 @@
 import React, { useEffect, useState } from "react";
 import AWS from "aws-sdk";
 import "../css/Information.css";
-import { awsConfig } from "./aws-exports";
-
-// AWS SDK 초기화
-AWS.config.update({
-  region: awsConfig.region,
-  accessKeyId: awsConfig.credentials.accessKeyId,
-  secretAccessKey: awsConfig.credentials.secretAccessKey,
-});
 
 const cloudwatch = new AWS.CloudWatch();
 const ec2 = new AWS.EC2();
 const rds = new AWS.RDS();
 
-const fetchMetrics = async (
-  namespace,
-  metricName,
-  instanceId,
-  dimensionName
-) => {
-  const params = {
-    Namespace: namespace,
-    MetricName: metricName,
-    Dimensions: [
-      {
-        Name: dimensionName,
-        Value: instanceId,
-      },
-    ],
-    StartTime: new Date(new Date().getFullYear(), 4, 1), // 5월 1일로 설정 (월은 0부터 시작하므로 4는 5월)
-    EndTime: new Date(),
-    Period: 3600, // 1시간 간격
-    Statistics: ["Average", "Maximum", "Minimum"],
-  };
-
-  return new Promise((resolve, reject) => {
-    cloudwatch.getMetricStatistics(params, (err, data) => {
-      if (err) reject(err);
-      else resolve(data.Datapoints);
-    });
-  });
-};
-
 const Information = () => {
-  const [cpuData, setCpuData] = useState({ ec2: null, rds: null });
-  const [ec2InstanceType, setEc2InstanceType] = useState("");
-  const [rdsInstanceType, setRdsInstanceType] = useState("");
+  const [cpuData, setCpuData] = useState([]);
+  const [instanceTypes, setInstanceTypes] = useState({});
+  const [rdsData, setRdsData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const ec2InstanceId = "i-03b30f89868eb4d2f";
-        const rdsInstanceId = "mydb12";
+        // EC2 인스턴스 정보 가져오기
+        const ec2InstanceData = await ec2.describeInstances().promise();
+        const ec2Instances = ec2InstanceData.Reservations.flatMap(
+          (reservation) => reservation.Instances
+        ).filter((instance) => instance.State.Name === "running"); // running 상태의 EC2 필터링
 
-        const ec2InstanceData = await ec2
-          .describeInstances({ InstanceIds: [ec2InstanceId] })
-          .promise();
-        const rdsInstanceData = await rds
-          .describeDBInstances({ DBInstanceIdentifier: rdsInstanceId })
-          .promise();
-
-        const ec2Metrics = await fetchMetrics(
-          "AWS/EC2",
-          "CPUUtilization",
-          ec2InstanceId,
-          "InstanceId"
-        );
-        const rdsMetrics = await fetchMetrics(
-          "AWS/RDS",
-          "CPUUtilization",
-          rdsInstanceId,
-          "DBInstanceIdentifier"
-        );
-
-        setCpuData({
-          ec2: ec2Metrics,
-          rds: rdsMetrics,
+        // EC2 인스턴스 메트릭스 가져오기
+        const ec2DataPromises = ec2Instances.map(async (instance) => {
+          const ec2Metrics = await fetchMetrics(
+            "AWS/EC2",
+            "CPUUtilization",
+            instance.InstanceId,
+            "InstanceId"
+          );
+          return {
+            id: instance.InstanceId,
+            name: instance.Tags.find((tag) => tag.Key === "Name").Value,
+            metrics: ec2Metrics,
+          };
         });
 
-        setEc2InstanceType(
-          ec2InstanceData.Reservations[0].Instances[0].InstanceType
-        );
-        setRdsInstanceType(rdsInstanceData.DBInstances[0].DBInstanceClass);
+        // 모든 EC2 인스턴스 데이터 수집
+        const ec2Data = await Promise.all(ec2DataPromises);
+        setCpuData(ec2Data);
+
+        // EC2 인스턴스 유형 설정
+        const ec2InstanceTypes = {};
+        ec2Instances.forEach((instance) => {
+          ec2InstanceTypes[instance.InstanceId] = instance.InstanceType;
+        });
+        setInstanceTypes(ec2InstanceTypes);
+
+        // RDS 인스턴스 정보 가져오기
+        const rdsInstanceData = await rds.describeDBInstances().promise();
+        const rdsInstances = rdsInstanceData.DBInstances.filter(
+          (instance) => instance.DBInstanceStatus === "available"
+        ); // available 상태의 RDS 필터링
+
+        // RDS 인스턴스 메트릭스 가져오기
+        const rdsDataPromises = rdsInstances.map(async (instance) => {
+          const rdsMetrics = await fetchMetrics(
+            "AWS/RDS",
+            "CPUUtilization",
+            instance.DBInstanceIdentifier,
+            "DBInstanceIdentifier"
+          );
+          return { id: instance.DBInstanceIdentifier, metrics: rdsMetrics };
+        });
+
+        // 모든 RDS 인스턴스 데이터 수집
+        const rdsData = await Promise.all(rdsDataPromises);
+        setRdsData(rdsData);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -90,6 +73,35 @@ const Information = () => {
 
     fetchData();
   }, []);
+
+  const fetchMetrics = async (
+    namespace,
+    metricName,
+    instanceId,
+    dimensionName
+  ) => {
+    const params = {
+      Namespace: namespace,
+      MetricName: metricName,
+      Dimensions: [
+        {
+          Name: dimensionName,
+          Value: instanceId,
+        },
+      ],
+      StartTime: new Date(new Date().getFullYear(), 4, 1), // 5월 1일로 설정 (월은 0부터 시작하므로 4는 5월)
+      EndTime: new Date(),
+      Period: 3600, // 1시간 간격
+      Statistics: ["Average", "Maximum", "Minimum"],
+    };
+
+    return new Promise((resolve, reject) => {
+      cloudwatch.getMetricStatistics(params, (err, data) => {
+        if (err) reject(err);
+        else resolve(data.Datapoints);
+      });
+    });
+  };
 
   const calculateStatistics = (data) => {
     if (!data || data.length === 0) {
@@ -115,66 +127,75 @@ const Information = () => {
   };
 
   const renderMetrics = () => {
-    if (!cpuData.ec2 && !cpuData.rds) {
+    if (cpuData.length === 0 && rdsData.length === 0) {
       return <div>No data available</div>;
     }
 
-    const ec2Stats = calculateStatistics(cpuData.ec2);
-    const rdsStats = calculateStatistics(cpuData.rds);
-
     return (
       <div className="infod">
-        {cpuData.ec2 && (
-          <div className="Information-container">
+        {/* EC2 인스턴스 데이터 */}
+        {cpuData.map((instance) => (
+          <div key={instance.id} className="Information-container">
             <h2>
-              <span className="highlight">EC2</span> 인스턴스 CPU 사용량
+              <span className="highlight">EC2</span> 인스턴스 CPU 사용량 -{" "}
+              {instance.name}
             </h2>
             <div className="metric-info">
               <p className="info-p">
                 평균값 :{" "}
-                <span className="custom-color">{ec2Stats.average}</span>
+                <span className="custom-color">
+                  {calculateStatistics(instance.metrics).average}
+                </span>
               </p>
               <p className="info-p">
                 최댓값 :{" "}
-                <span className="custom-color">{ec2Stats.maximum}</span>
+                <span className="custom-color">
+                  {calculateStatistics(instance.metrics).maximum}
+                </span>
               </p>
               <p className="info-p">
                 최솟값 :{" "}
-                <span className="custom-color">{ec2Stats.minimum}</span>
+                <span className="custom-color">
+                  {calculateStatistics(instance.metrics).minimum}
+                </span>
               </p>
             </div>
             <p className="info-p">
               EC2 인스턴스 유형 :{" "}
-              <span className="custom-color">{ec2InstanceType}</span>
+              <span className="custom-color">{instanceTypes[instance.id]}</span>
             </p>
           </div>
-        )}
+        ))}
 
-        {cpuData.rds && (
-          <div className="Information-container">
+        {/* RDS 인스턴스 데이터 */}
+        {rdsData.map((instance) => (
+          <div key={instance.id} className="Information-container">
             <h2>
-              <span className="highlight">RDS</span> 인스턴스 CPU 사용량
+              <span className="highlight">RDS</span> 인스턴스 CPU 사용량 -{" "}
+              {instance.id}
             </h2>
             <div className="metric-info">
               <p className="info-p">
                 평균값 :{" "}
-                <span className="custom-color">{rdsStats.average}</span>
+                <span className="custom-color">
+                  {calculateStatistics(instance.metrics).average}
+                </span>
               </p>
               <p className="info-p">
                 최댓값 :{" "}
-                <span className="custom-color">{rdsStats.maximum}</span>
+                <span className="custom-color">
+                  {calculateStatistics(instance.metrics).maximum}
+                </span>
               </p>
               <p className="info-p">
                 최솟값 :{" "}
-                <span className="custom-color">{rdsStats.minimum}</span>
+                <span className="custom-color">
+                  {calculateStatistics(instance.metrics).minimum}
+                </span>
               </p>
             </div>
-            <p className="info-p">
-              RDS 인스턴스 유형 :{" "}
-              <span className="custom-color">{rdsInstanceType}</span>
-            </p>
           </div>
-        )}
+        ))}
       </div>
     );
   };

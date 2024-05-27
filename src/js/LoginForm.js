@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../css/LoginForm.css";
 import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 
 const LoginForm = ({ setResponseData }) => {
@@ -27,7 +28,7 @@ const LoginForm = ({ setResponseData }) => {
       });
 
       setResponseData(response.data);
-      navigate("/AccessInfo");
+      navigate("/AccessInfo", { state: { currentRegion: selectedRegion } });
     } catch (error) {
       console.error("Error submitting data", error);
       alert("Error submitting data");
