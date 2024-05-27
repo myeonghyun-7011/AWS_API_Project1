@@ -60,7 +60,7 @@ const Information = () => {
             instance.DBInstanceIdentifier,
             "DBInstanceIdentifier"
           );
-          return { id: instance.DBInstanceIdentifier, metrics: rdsMetrics };
+          return { id: instance.DBInstanceIdentifier, engine: instance.Engine, metrics: rdsMetrics };
         });
 
         // 모든 RDS 인스턴스 데이터 수집
@@ -137,8 +137,9 @@ const Information = () => {
         {cpuData.map((instance) => (
           <div key={instance.id} className="Information-container">
             <h2>
-              <span className="highlight">EC2</span> 인스턴스 CPU 사용량 -{" "}
-              {instance.name}
+              <span className="highlight">EC2</span> 인스턴스 CPU 사용량 {" "}
+              <br />
+              <span>인스턴스 이름 :</span>{instance.name}
             </h2>
             <div className="metric-info">
               <p className="info-p">
@@ -171,8 +172,12 @@ const Information = () => {
         {rdsData.map((instance) => (
           <div key={instance.id} className="Information-container">
             <h2>
-              <span className="highlight">RDS</span> 인스턴스 CPU 사용량 -{" "}
-              {instance.id}
+              <span className="highlight">RDS</span> 인스턴스 CPU 사용량 {" "}
+              <br />
+              <span>DB-인스턴스 이름 :</span>{instance.id}
+              <br />
+              <span>DB-엔진 유형 :</span>{instance.engine}
+               
             </h2>
             <div className="metric-info">
               <p className="info-p">
@@ -203,4 +208,4 @@ const Information = () => {
   return renderMetrics();
 };
 
-export default Information;
+export default Information
