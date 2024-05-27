@@ -21,5 +21,8 @@ COPY src/js/img/* /app/src/js/img/
 RUN addgroup -S nodejs && adduser -S nodejs -G nodejs
 USER nodejs
 
+# 애플리케이션이 사용하는 포트 공개
+EXPOSE 3000
+
 # 앱 실행
 CMD ["npm", "start"]
