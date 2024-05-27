@@ -40,14 +40,45 @@
   font-size: 30px;
   padding-bottom: 20px;
 }
+
+.Rec-sub-title1 {
+  /* margin-right: 37px; */
+  /* margin: 34px; */
+  /* background-color: antiquewhite; */
+  color: #666;
+  font-size: 25px;
+  padding: 10px 40px 10px 10px;
+}
+
+.Rec-sub-title2 {
+  background-color: antiquewhite;
+  color: #666;
+  font-size: 25px;
+  padding: 10px 7px 10px 7px;
+  margin-right: 8px;
+}
+
+.Rec-sub-title3 {
+  background-color: antiquewhite;
+  color: #666;
+  font-size: 25px;
+  padding: 10px 7px 10px 7px;
+  margin-right: 8px;
+}
+
 .Recommend-container {
   margin: 0px 45px 0px 45px;
-  width: 89%;
+  width: 90%;
   margin-bottom: 20px;
   border: 1px solid #ddd;
   border-radius: 30px;
-  padding: 80px;
+  padding: 40px;
   background-color: #f9f9f9;
+}
+
+.Recommend-section {
+  display: flex;
+  margin: 0 10px; /* 섹션 간의 간격 */
 }
 .Recommend-instance-group {
   margin-bottom: 20px; /* 인스턴스 그룹 간격 조정 */

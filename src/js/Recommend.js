@@ -4,52 +4,72 @@ import "../css/Recommend.css";
 const Recommend = ({ responseData }) => {
   // EC2 인스턴스를 필터링하는 함수
   const filterRunningEC2Instances = (ec2Instances) => {
-    return ec2Instances.filter(instance => instance.state === "running");
+    return ec2Instances.filter((instance) => instance.state === "running");
   };
 
   // RDS 인스턴스를 필터링하는 함수
   const filterAvailableRDSInstances = (rdsInstances) => {
-    return rdsInstances.filter(instance => instance.db_instance_status === "available");
+    return rdsInstances.filter(
+      (instance) => instance.db_instance_status === "available"
+    );
   };
 
   return (
     <div className="infor">
-      <h2>실행중인 인스턴스 더 좋은걸로 추천</h2>
+      <h2>인스턴스 추천 리스트</h2>
       <div className="Recommend-container">
-        <div className="Recommend-con">
-          <h3>EC2 Instances</h3>
-          {responseData && responseData.ec2_metrics && filterRunningEC2Instances(responseData.ec2_metrics).map((instance, idx) => (
-            <div key={idx} className="Recommend-instance-group">
-              <div className="Recommend-instance">
-                <p>Instance ID: {instance.instance_id}</p>
-                <p>Instance Type: {instance.instance_type}</p>
-                <p>Instance Name: {instance.instance_name}</p> {/* 수정된 부분 */}
-                <p>State: {instance.state}</p>
-                <p>Recommendations:</p>
-                {instance.reco && instance.reco.length > 0 ? (
-                  instance.reco.map((recommendation, rIdx) => (
-                    <div key={rIdx}>
-                      <p>Recommended Instance Type: {recommendation.instance_type}</p>
-                      <p>OS Engine: {recommendation.ec2_os_engine}</p>
-                      <p>Price: ${recommendation.price.toFixed(4)}</p>
-                    </div>
-                  ))
-                ) : (
-                  <p>No recommendations available</p>
-                )}
-              </div>
-            </div>
-          ))}
-
-          <h3>RDS Instances</h3>
-          {responseData && responseData.rds_metrics && filterAvailableRDSInstances(responseData.rds_metrics).map((instance, idx) => (
-            <div key={idx} className="Recommend-instance-group">
-              <div className="Recommend-instance">
-                <p>DB Instance Identifier: {instance.db_instance_identifier}</p>
-                <p>DB Instance Class: {instance.db_instance_class}</p>
-                <p>Engine: {instance.engine}</p>
-                <p>Status: {instance.db_instance_status}</p>
-                {/* <p>Metrics:</p>
+        <div className="Recommend-section">
+          <p className="Rec-sub-title1">
+            <span className="Rec-sub-title2">EC2</span>Instances
+          </p>
+          {responseData &&
+            responseData.ec2_metrics &&
+            filterRunningEC2Instances(responseData.ec2_metrics).map(
+              (instance, idx) => (
+                <div key={idx} className="Recommend-instance-group">
+                  <div className="Recommend-instance">
+                    <p>Instance ID: {instance.instance_id}</p>
+                    <p>Instance Type: {instance.instance_type}</p>
+                    <p>Instance Name: {instance.instance_name}</p>{" "}
+                    {/* 수정된 부분 */}
+                    <p>State: {instance.state}</p>
+                    <p>Recommendations:</p>
+                    {instance.reco && instance.reco.length > 0 ? (
+                      instance.reco.map((recommendation, rIdx) => (
+                        <div key={rIdx}>
+                          <p>
+                            Recommended Instance Type:{" "}
+                            {recommendation.instance_type}
+                          </p>
+                          <p>OS Engine: {recommendation.ec2_os_engine}</p>
+                          <p>Price: ${recommendation.price.toFixed(4)}</p>
+                        </div>
+                      ))
+                    ) : (
+                      <p>No recommendations available</p>
+                    )}
+                  </div>
+                </div>
+              )
+            )}
+        </div>
+        <div className="Recommend-section">
+          <p className="Rec-sub-title1">
+            <span className="Rec-sub-title3">RDS</span> Instances
+          </p>
+          {responseData &&
+            responseData.rds_metrics &&
+            filterAvailableRDSInstances(responseData.rds_metrics).map(
+              (instance, idx) => (
+                <div key={idx} className="Recommend-instance-group">
+                  <div className="Recommend-instance">
+                    <p>
+                      DB Instance Identifier: {instance.db_instance_identifier}
+                    </p>
+                    <p>DB Instance Class: {instance.db_instance_class}</p>
+                    <p>Engine: {instance.engine}</p>
+                    <p>Status: {instance.db_instance_status}</p>
+                    {/* <p>Metrics:</p>
                 <ul>
                   <li>CPU Utilization:</li>
                   <ul>
@@ -70,21 +90,25 @@ const Recommend = ({ responseData }) => {
                     <li>Average: {instance.metrics.FreeStorageSpace.Average}</li>
                   </ul>
                 </ul> */}
-                <p>Recommendations:</p>
-                {instance.reco && instance.reco.length > 0 ? (
-                  instance.reco.map((recommendation, rIdx) => (
-                    <div key={rIdx}>
-                      <p>Recommended Instance Type: {recommendation.instance_type}</p>
-                      <p>OS Engine: {recommendation.ec2_os_engine}</p>
-                      <p>Price: ${recommendation.price.toFixed(4)}</p>
-                    </div>
-                  ))
-                ) : (
-                  <p>No recommendations available</p>
-                )}
-              </div>
-            </div>
-          ))}
+                    <p>Recommendations:</p>
+                    {instance.reco && instance.reco.length > 0 ? (
+                      instance.reco.map((recommendation, rIdx) => (
+                        <div key={rIdx}>
+                          <p>
+                            Recommended Instance Type:{" "}
+                            {recommendation.instance_type}
+                          </p>
+                          <p>OS Engine: {recommendation.ec2_os_engine}</p>
+                          <p>Price: ${recommendation.price.toFixed(4)}</p>
+                        </div>
+                      ))
+                    ) : (
+                      <p>No recommendations available</p>
+                    )}
+                  </div>
+                </div>
+              )
+            )}
         </div>
       </div>
     </div>
