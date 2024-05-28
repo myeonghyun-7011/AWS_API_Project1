@@ -7,11 +7,9 @@ const cloudwatch = new AWS.CloudWatch();
 const ec2 = new AWS.EC2();
 const rds = new AWS.RDS();
 
-
 const Information = () => {
   const location = useLocation();
   const { accessKeyId, secretAccessKey, currentRegion } = location.state;
-
 
   useEffect(() => {
     AWS.config.update({
@@ -21,6 +19,7 @@ const Information = () => {
     });
   }, [accessKeyId, secretAccessKey, currentRegion]);
 
+  const [loading, setLoading] = useState(true);
   const [cpuData, setCpuData] = useState([]);
   const [instanceTypes, setInstanceTypes] = useState({});
   const [rdsData, setRdsData] = useState([]);
@@ -28,13 +27,11 @@ const Information = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // EC2 인스턴스 정보 가져오기
         const ec2InstanceData = await ec2.describeInstances().promise();
         const ec2Instances = ec2InstanceData.Reservations.flatMap(
           (reservation) => reservation.Instances
-        ).filter((instance) => instance.State.Name === "running"); // running 상태의 EC2 필터링
+        ).filter((instance) => instance.State.Name === "running");
 
-        // EC2 인스턴스 메트릭스 가져오기
         const ec2DataPromises = ec2Instances.map(async (instance) => {
           const ec2Metrics = await fetchMetrics(
             "AWS/EC2",
@@ -49,24 +46,20 @@ const Information = () => {
           };
         });
 
-        // 모든 EC2 인스턴스 데이터 수집
         const ec2Data = await Promise.all(ec2DataPromises);
         setCpuData(ec2Data);
 
-        // EC2 인스턴스 유형 설정
         const ec2InstanceTypes = {};
         ec2Instances.forEach((instance) => {
           ec2InstanceTypes[instance.InstanceId] = instance.InstanceType;
         });
         setInstanceTypes(ec2InstanceTypes);
 
-        // RDS 인스턴스 정보 가져오기
         const rdsInstanceData = await rds.describeDBInstances().promise();
         const rdsInstances = rdsInstanceData.DBInstances.filter(
           (instance) => instance.DBInstanceStatus === "available"
-        ); // available 상태의 RDS 필터링
+        );
 
-        // RDS 인스턴스 메트릭스 가져오기
         const rdsDataPromises = rdsInstances.map(async (instance) => {
           const rdsMetrics = await fetchMetrics(
             "AWS/RDS",
@@ -77,11 +70,13 @@ const Information = () => {
           return { id: instance.DBInstanceIdentifier, engine: instance.Engine, metrics: rdsMetrics };
         });
 
-        // 모든 RDS 인스턴스 데이터 수집
         const rdsData = await Promise.all(rdsDataPromises);
         setRdsData(rdsData);
+
+        setLoading(false); // Data fetching completed
       } catch (error) {
         console.error("Error fetching data:", error);
+        // Show error message to the user
       }
     };
 
@@ -94,6 +89,8 @@ const Information = () => {
     instanceId,
     dimensionName
   ) => {
+    const startDate = new Date(new Date().getFullYear(), 4, 1); // May 1st
+
     const params = {
       Namespace: namespace,
       MetricName: metricName,
@@ -103,9 +100,9 @@ const Information = () => {
           Value: instanceId,
         },
       ],
-      StartTime: new Date(new Date().getFullYear(), 4, 1), // 5월 1일로 설정 (월은 0부터 시작하므로 4는 5월)
+      StartTime: startDate,
       EndTime: new Date(),
-      Period: 3600, // 1시간 간격
+      Period: 3600, // 1-hour interval
       Statistics: ["Average", "Maximum", "Minimum"],
     };
 
@@ -127,20 +124,26 @@ const Information = () => {
     let min = Infinity;
 
     data.forEach((point) => {
-      sum += point.Average;
-      if (point.Maximum > max) max = point.Maximum;
-      if (point.Minimum < min) min = point.Minimum;
+      if (point && point.Average && point.Maximum && point.Minimum) {
+        sum += point.Average;
+        if (point.Maximum > max) max = point.Maximum;
+        if (point.Minimum < min) min = point.Minimum;
+      }
     });
-
+  
     const average = (sum / data.length).toFixed(2);
     return {
       average: average,
-      maximum: max.toFixed(2),
-      minimum: min.toFixed(2),
+      maximum: max !== -Infinity ? max.toFixed(2) : "N/A",
+      minimum: min !== Infinity ? min.toFixed(2) : "N/A",
     };
   };
 
   const renderMetrics = () => {
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
     if (cpuData.length === 0 && rdsData.length === 0) {
       return <div>No data available</div>;
     }
@@ -181,7 +184,7 @@ const Information = () => {
             </p>
           </div>
         ))}
-
+    
         {/* RDS 인스턴스 데이터 */}
         {rdsData.map((instance) => (
           <div key={instance.id} className="Information-container">
@@ -217,9 +220,10 @@ const Information = () => {
         ))}
       </div>
     );
+  
   };
 
   return renderMetrics();
 };
 
-export default Information
+export default Information;
