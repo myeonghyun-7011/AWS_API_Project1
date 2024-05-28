@@ -13,6 +13,13 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+// AWS.config.update({
+//   accessKeyId: awsConfig.credentials.accessKeyId,
+//   secretAccessKey: awsConfig.credentials.secretAccessKey,
+//   region: awsConfig.region,
+// });
+
+
 const AccessInfo = () => {
   const [ec2InstanceIds, setEc2InstanceIds] = useState([]);
   const [rdsInstanceIds, setRdsInstanceIds] = useState([]);
