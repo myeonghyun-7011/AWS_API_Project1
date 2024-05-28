@@ -17,6 +17,9 @@ COPY . .
 COPY src/img/* /app/src/img/
 COPY src/js/img/* /app/src/js/img/
 
+# aws-exports.js 파일 복사
+COPY aws-exports.js /app/src/js/aws-exports.js
+
 # 앱 실행을 위한 사용자 생성
 RUN addgroup -S nodejs && adduser -S nodejs -G nodejs
 USER nodejs

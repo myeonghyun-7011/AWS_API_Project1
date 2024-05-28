@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import AWS from "aws-sdk";
-import "../css/Information.css";
 import { useLocation } from 'react-router-dom';
+import "../css/Information.css";
+
 const cloudwatch = new AWS.CloudWatch();
 const ec2 = new AWS.EC2();
 const rds = new AWS.RDS();
