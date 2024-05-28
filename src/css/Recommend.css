@@ -22,22 +22,29 @@
 }
 
 .infor {
-  margin-top: 60px;
+  /* margin-top: 60px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 30vh;
   box-sizing: border-box;
-  padding-bottom: 10px;
+  padding-bottom: 70px;
   padding-top: 5px;
 }
+
 .infor h2 {
-  font-size: 35px;
+  font-size: 34px;
   font-family: "Pretendard-Regular";
 }
 .infor h3 {
   font-size: 30px;
+  padding-bottom: 20px;
+}
+
+.infor-main-title {
+  font-size: 34px;
+  font-family: "Pretendard-Regular";
   padding-bottom: 20px;
 }
 
@@ -67,18 +74,17 @@
 }
 
 .Recommend-container {
+  border: 1px solid #cdcdcd;
   margin: 0px 45px 0px 45px;
   width: 90%;
   margin-bottom: 20px;
-  border: 1px solid #ddd;
   border-radius: 30px;
-  padding: 40px;
-  /*background-color: #f9f9f9;*/
+  /* background-color: #f9f9f9; */
 }
 
 .Recommend-sub-container {
-  margin: 0px 45px 0px 45px;
-  width: 90%;
+  /*margin: 0px 45px 0px 45px;*/
+  width: 95%;
   margin-bottom: 20px;
   /*border: 1px solid #ddd;*/
   border-radius: 30px;

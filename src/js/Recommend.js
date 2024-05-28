@@ -16,7 +16,7 @@ const Recommend = ({ responseData }) => {
 
   return (
     <div className="infor">
-      <h2>인스턴스 추천 리스트</h2>
+      <h2 className="infor-main-title">인스턴스 추천 리스트</h2>
       <div className="Recommend-container">
         <div className="Recommend-sub-container">
           <div className="Recommend-section">

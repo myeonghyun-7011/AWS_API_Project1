@@ -49,3 +49,12 @@ p {
   font-weight: 900;
   color: #002ead;
 }
+
+.infor-sub-title {
+  background-color: antiquewhite;
+  letter-spacing: 2px;
+  font-family: "Pretendard-Regular";
+  font-size: 20px;
+  margin: 5px 0px 25px 0;
+  padding: 5px 25px 5px 25px;
+}
