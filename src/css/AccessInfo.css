@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
+  min-height: 70vh;
   box-sizing: border-box;
   width: 100%;
   padding: 10px;
@@ -34,9 +34,8 @@ p {
   letter-spacing: 2px;
   font-family: "Pretendard-Regular";
   font-size: 20px;
-  /* padding-bottom: 5px; */
   margin: 5px 0px 25px 0;
-  padding: 5px;
+  padding: 5px 10px 5px 10px;
 }
 
 .dashboard {

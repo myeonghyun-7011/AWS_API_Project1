@@ -16,13 +16,15 @@ const Information = ({ responseData }) => {
 
   return (
     <div className="infor">
-      <h2>현재 </h2>
+      <h2>CPU 사용량</h2>
+      <div>
+        <p className="infor-sub-title">
+          <b>State : </b> running
+        </p>
+      </div>
       <div className="Recommend-container">
         <div className="Recommend-sub-container">
           <div className="Recommend-section">
-            <p className="Rec-sub-title1">
-              <span className="Rec-sub-title2">EC2</span>Instances
-            </p>
             {responseData &&
               responseData.ec2_metrics &&
               filterRunningEC2Instances(responseData.ec2_metrics).map(
@@ -31,7 +33,7 @@ const Information = ({ responseData }) => {
                     <div className="Recommend-instance">
                       <div className="rec-box">
                         <p className="id-title">
-                          Instance ID : {instance.instance_id}
+                          EC2 Instance ID : {instance.instance_id}
                         </p>
                         <p>Instance Type : {instance.instance_type}</p>
                         <p>Instance Name : {instance.instance_name}</p>
@@ -46,7 +48,6 @@ const Information = ({ responseData }) => {
                           </ul>
                         </ul>
                       </div>
-                    
                     </div>
                   </div>
                 )
@@ -55,9 +56,6 @@ const Information = ({ responseData }) => {
         </div>
         <div className="Recommend-sub-container">
           <div className="Recommend-section">
-            <p className="Rec-sub-title1">
-              <span className="Rec-sub-title3">RDS</span> Instances
-            </p>
             {responseData &&
               responseData.rds_metrics &&
               filterAvailableRDSInstances(responseData.rds_metrics).map(
@@ -76,20 +74,36 @@ const Information = ({ responseData }) => {
                         <ul>
                           <li>CPU Utilization:</li>
                           <ul>
-                            <li>Minimum : {instance.metrics.CPUUtilization.Minimum}</li>
-                            <li>Maximum : {instance.metrics.CPUUtilization.Maximum}</li>
-                            <li>Average : {instance.metrics.CPUUtilization.Average}</li>
+                            <li>
+                              Minimum :{" "}
+                              {instance.metrics.CPUUtilization.Minimum}
+                            </li>
+                            <li>
+                              Maximum :{" "}
+                              {instance.metrics.CPUUtilization.Maximum}
+                            </li>
+                            <li>
+                              Average :{" "}
+                              {instance.metrics.CPUUtilization.Average}
+                            </li>
                           </ul>
                           <li>Database Connections:</li>
                           <ul>
-                            <li>Minimum : {instance.metrics.DatabaseConnections.Minimum}</li>
-                            <li>Maximum : {instance.metrics.DatabaseConnections.Maximum}</li>
-                            <li>Average : {instance.metrics.DatabaseConnections.Average}</li>
+                            <li>
+                              Minimum :{" "}
+                              {instance.metrics.DatabaseConnections.Minimum}
+                            </li>
+                            <li>
+                              Maximum :{" "}
+                              {instance.metrics.DatabaseConnections.Maximum}
+                            </li>
+                            <li>
+                              Average :{" "}
+                              {instance.metrics.DatabaseConnections.Average}
+                            </li>
                           </ul>
-
                         </ul>
                       </div>
-
                     </div>
                   </div>
                 )
