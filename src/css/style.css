@@ -296,7 +296,7 @@
   font-size: 23px;
   line-height: 1.5;
   font-weight: 300;
-  margin-top: 140px;
+  margin-top: 20px;
 }
 .banner__inner .desc a {
   color: #fff;
@@ -320,7 +320,7 @@
 
 .banner-icon-container {
   padding-top: 55px;
-  border-top: solid 1px #e6e6e6;
+  /*border-top: solid 1px #e6e6e6;*/
 }
 /* text__inner */
 .text_sub_title {

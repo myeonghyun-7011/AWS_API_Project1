@@ -22,12 +22,13 @@
 }
 
 .login-container {
-  max-width: 400px;
+  max-width: 405px;
   margin: 100px auto;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  height: 405px;
 }
 
 .login-container h2 {
@@ -142,6 +143,12 @@ p#region_title_p {
   color: red;
 }
 
+p.id-title {
+  /* background-color: #eae6df; */
+  color: #002ead;
+  font-weight: bold;
+}
+
 p#access_key_id {
   letter-spacing: 2px;
   font-weight: 600;
@@ -150,7 +157,7 @@ p#access_key_id {
   margin: 10px;
 }
 
-p#accesskey {
+p#secret_access_key {
   letter-spacing: 2px;
   font-weight: 600;
   font-family: "Pretendard-Regular";

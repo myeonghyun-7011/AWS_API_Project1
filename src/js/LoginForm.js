@@ -21,21 +21,23 @@ const LoginForm = ({ setResponseData }) => {
     }
 
     try {
-      const response = await axios.post("http://54.95.82.122:8000/api/metrics", {
-        access_key_id,
-        secret_access_key,
-        region_name: selectedRegion,
-      });
+      const response = await axios.post(
+        "http://54.95.82.122:8000/api/metrics",
+        {
+          access_key_id,
+          secret_access_key,
+          region_name: selectedRegion,
+        }
+      );
 
       setResponseData(response.data);
       navigate("/AccessInfo", {
         state: {
           accessKeyId: access_key_id,
           secretAccessKey: secret_access_key,
-          currentRegion: selectedRegion
-        }
+          currentRegion: selectedRegion,
+        },
       });
-
     } catch (error) {
       console.error("Error submitting data", error);
       alert("Error submitting data");
@@ -114,7 +116,7 @@ const LoginForm = ({ setResponseData }) => {
           />
 
           <label htmlFor="secret_access_key">
-            <p id="accesskey">ACCESS_KEY_PW</p>
+            <p id="secret_access_key">ACCESS_KEY_PW</p>
           </label>
           <input
             type="password"
