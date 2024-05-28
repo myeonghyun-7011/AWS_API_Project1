@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from "react";
 import AWS from "aws-sdk";
 import "../css/Information.css";
-
+import { useLocation } from 'react-router-dom';
 const cloudwatch = new AWS.CloudWatch();
 const ec2 = new AWS.EC2();
 const rds = new AWS.RDS();
 
+
 const Information = () => {
+  const location = useLocation();
+  const { accessKeyId, secretAccessKey, currentRegion } = location.state;
+
+
+  useEffect(() => {
+    AWS.config.update({
+      accessKeyId: accessKeyId,
+      secretAccessKey: secretAccessKey,
+      region: currentRegion,
+    });
+  }, [accessKeyId, secretAccessKey, currentRegion]);
+
   const [cpuData, setCpuData] = useState([]);
   const [instanceTypes, setInstanceTypes] = useState({});
   const [rdsData, setRdsData] = useState([]);

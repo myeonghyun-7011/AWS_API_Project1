@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AWS from "aws-sdk";
 import "../css/AccessInfo.css";
+import { useLocation } from 'react-router-dom';
 import LoadingAccessInfo from "./components/LoadingAccessInfo";
 import {
   LineChart,
@@ -13,19 +14,23 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// AWS.config.update({
-//   accessKeyId: awsConfig.credentials.accessKeyId,
-//   secretAccessKey: awsConfig.credentials.secretAccessKey,
-//   region: awsConfig.region,
-// });
-
 
 const AccessInfo = () => {
+  const location = useLocation();
+  const { accessKeyId, secretAccessKey, currentRegion } = location.state;
+
+
+  useEffect(() => {
+    AWS.config.update({
+      accessKeyId: accessKeyId,
+      secretAccessKey: secretAccessKey,
+      region: currentRegion,
+    });
+  }, [accessKeyId, secretAccessKey, currentRegion]);
   const [ec2InstanceIds, setEc2InstanceIds] = useState([]);
   const [rdsInstanceIds, setRdsInstanceIds] = useState([]);
   const [ec2Metrics, setEc2Metrics] = useState([]);
   const [rdsMetrics, setRdsMetrics] = useState([]);
-  const [currentRegion, setCurrentRegion] = useState("ap-northeast-1");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

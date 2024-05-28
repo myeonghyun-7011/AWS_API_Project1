@@ -28,7 +28,14 @@ const LoginForm = ({ setResponseData }) => {
       });
 
       setResponseData(response.data);
-      navigate("/AccessInfo", { state: { currentRegion: selectedRegion } });
+      navigate("/AccessInfo", {
+        state: {
+          accessKeyId: access_key_id,
+          secretAccessKey: secret_access_key,
+          currentRegion: selectedRegion
+        }
+      });
+
     } catch (error) {
       console.error("Error submitting data", error);
       alert("Error submitting data");
