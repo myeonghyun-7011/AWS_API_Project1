@@ -28,7 +28,6 @@ const Main = () => {
       <MapText />
       <Map />
       <br />
-      <Banner />
       <button className="scroll-button" onClick={scrollToTop}>
         <i className="fas fa-arrow-up"></i>
       </button>
