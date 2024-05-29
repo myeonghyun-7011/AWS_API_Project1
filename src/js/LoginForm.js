@@ -21,14 +21,11 @@ const LoginForm = ({ setResponseData }) => {
     }
 
     try {
-      const response = await axios.post(
-        "http://54.95.82.122:8000/api/metrics",
-        {
-          access_key_id,
-          secret_access_key,
-          region_name: selectedRegion,
-        }
-      );
+      const response = await axios.post("http://35.78.86.68:8000/api/metrics", {
+        access_key_id,
+        secret_access_key,
+        region_name: selectedRegion,
+      });
 
       setResponseData(response.data);
       navigate("/AccessInfo", {
