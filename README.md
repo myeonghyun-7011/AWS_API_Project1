@@ -12,7 +12,8 @@
 
 ## ⭐ 주요 기능
 - **메인페이지** : Main, AccessInfo
-
+====================================
+<br/>
 
 ## 🔨 프로젝트 구조
 ![아키텍처](https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-06-02%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2011.19.37.png?alt=media&token=79093ff3-9c0a-40fd-8721-f0fa54625694)
