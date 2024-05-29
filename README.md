@@ -34,6 +34,7 @@
 <br/>
 
 ## 🔨 플로우 차트
+![제목 없는 다이어그램 drawio](https://github.com/myeonghyun-7011/AWS_API_Project1/assets/66741997/ccc66ec2-a41d-48c1-be41-3f0bb01b9963)
 
 <br/>
 
