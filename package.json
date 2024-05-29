@@ -52,5 +52,5 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
-  "proxy": "http://35.78.86.68:8000"
+  "proxy": "http://fastapi-service.default.svc.cluster.local:8000"
 }
