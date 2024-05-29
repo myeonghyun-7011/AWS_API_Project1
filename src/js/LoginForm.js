@@ -22,7 +22,7 @@ const LoginForm = ({ setResponseData }) => {
 
     try {
       const response = await axios.post(
-        "http://fastapi:8000/api/metrics",
+        "http://fastapi-service.default.svc.cluster.local:8000/api/metrics",
         {
           access_key_id,
           secret_access_key,
