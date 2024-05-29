@@ -22,15 +22,15 @@ const Information = ({ responseData }) => {
           <b>State : </b> running
         </p>
       </div>
-      <div className="Recommend-container">
-        <div className="Recommend-sub-container">
-          <div className="Recommend-section">
+      <div className="infor-container">
+        <div className="infor-sub-container">
+          <div className="infor-section">
             {responseData &&
               responseData.ec2_metrics &&
               filterRunningEC2Instances(responseData.ec2_metrics).map(
                 (instance, idx) => (
-                  <div key={idx} className="Recommend-instance-group">
-                    <div className="Recommend-instance">
+                  <div key={idx} className="infor-instance-group">
+                    <div className="infor-instance">
                       <div className="rec-box">
                         <p className="id-title">
                           EC2 Instance ID : {instance.instance_id}
@@ -54,14 +54,14 @@ const Information = ({ responseData }) => {
               )}
           </div>
         </div>
-        <div className="Recommend-sub-container">
-          <div className="Recommend-section">
+        <div className="infor-sub-container">
+          <div className="infor-section">
             {responseData &&
               responseData.rds_metrics &&
               filterAvailableRDSInstances(responseData.rds_metrics).map(
                 (instance, idx) => (
-                  <div key={idx} className="Recommend-instance-group">
-                    <div className="Recommend-instance">
+                  <div key={idx} className="infor-instance-group">
+                    <div className="infor-instance">
                       <div className="rec-box">
                         <p className="id-title">
                           DB Instance Identifier :{" "}
