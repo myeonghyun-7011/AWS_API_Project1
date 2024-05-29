@@ -1,6 +1,6 @@
-# TEAM NAME : Adaptor
+# 👨‍👩‍👦‍👦TEAM NAME : Adaptor👨‍👩‍👦‍👦 
 ## Project Title : AWS Pricing Recommendation Service
-=====================================================
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
