@@ -12,3 +12,38 @@
 
 ## ⭐ 주요 기능
 - **메인페이지** : Main, AccessInfo
+
+
+## 🔨 프로젝트 구조
+![아키텍처](https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-06-02%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2011.19.37.png?alt=media&token=79093ff3-9c0a-40fd-8721-f0fa54625694)
+
+<br/>
+
+## 🔧 Stack
+
+**Frontend(Web)**
+- **Language** : JavaScript, HTML , CSS
+- **Library & Framework** : React, Axios
+- **Deploy**: AWS(EC2,S3)
+<br />
+
+**Backend**
+- **Language** : 
+- **Library & Framework** :
+- **Database** : 
+- **ORM** : 
+- **Deploy**: AWS(EC2, RDS)
+
+<br/>
+
+## 💡 기대효과
+
+**자신이 만든 포트폴리오 양식을 웹 사이트에서 관리 및 공유를 할 수 있어 인터넷에 연결만 되어 있다면 언제 어디서든 디자인을 할 수 있다.**
+
+**드래그 앤 드롭 (DND) 기술과 이를 활용하는 법에 대해 학습할 수 있다.**
+
+**데이터 형성과 상태관리, 구축 기술, 서비스 배포에 대해 학습할 수 있다.**
+
+**RESTful API를 적용한 프론트엔드&백엔드 간의 통신을 학습할 수 있다.**
+
+<br/>
