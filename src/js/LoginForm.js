@@ -21,15 +21,12 @@ const LoginForm = ({ setResponseData }) => {
     }
 
     try {
-      const response = await axios.post(
-        "http://fastapi-service.default.svc.cluster.local:8000/api/metrics",
-        {
-          access_key_id,
-          secret_access_key,
-          region_name: selectedRegion,
-        }
-      );
-
+      const response = await axios.post("/api/metrics", {  // 수정된 부분: /api 경로를 사용
+        access_key_id,
+        secret_access_key,
+        region_name: selectedRegion,
+      });
+      console.log(response)
       setResponseData(response.data);
       navigate("/AccessInfo", {
         state: {
