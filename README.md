@@ -35,7 +35,6 @@
 
 ## 🔨 플로우 차트
 ![image](https://github.com/myeonghyun-7011/AWS_API_Project1/assets/66741997/111a645a-8fa5-4d3b-81bf-b78b5a1c979e)
-9963)
 
 <br/>
 
