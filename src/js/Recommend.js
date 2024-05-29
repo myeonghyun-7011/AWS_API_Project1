@@ -15,23 +15,28 @@ const Recommend = ({ responseData }) => {
   };
 
   return (
-    <div className="infor">
+    <div className="rec">
       <h2 className="infor-main-title">인스턴스 추천 리스트</h2>
+      <div>
+        <p className="infor-sub-title">
+          <b>State : </b> running
+        </p>
+      </div>
       <div className="Recommend-container">
         <div className="Recommend-sub-container">
           <div className="Recommend-section">
-            <p className="Rec-sub-title1">
+            {/*<p className="Rec-sub-title1">
               <span className="Rec-sub-title2">EC2</span>Instances
-            </p>
+  </p>*/}
             {responseData &&
               responseData.ec2_metrics &&
               filterRunningEC2Instances(responseData.ec2_metrics).map(
                 (instance, idx) => (
                   <div key={idx} className="Recommend-instance-group">
                     <div className="Recommend-instance">
-                      <div className="rec-box">
+                      <div className="rec-main-box">
                         <p className="id-title">
-                          Instance ID : {instance.instance_id}
+                          EC2 Instance ID : {instance.instance_id}
                         </p>
                         <p>Instance Type : {instance.instance_type}</p>
                         <p>Instance Name : {instance.instance_name}</p>{" "}
@@ -41,7 +46,7 @@ const Recommend = ({ responseData }) => {
                       <p className="rec-title">Recommendations</p>
                       {instance.reco && instance.reco.length > 0 ? (
                         instance.reco.map((recommendation, rIdx) => (
-                          <div key={rIdx} className="rec-box">
+                          <div key={rIdx} className="rec-sub-box">
                             <p className="id-title">
                               Recommended Instance Type:{" "}
                               {recommendation.instance_type}
@@ -51,7 +56,9 @@ const Recommend = ({ responseData }) => {
                           </div>
                         ))
                       ) : (
-                        <p>No recommendations available</p>
+                        <p className="rec-sub-box">
+                          No recommendations available
+                        </p>
                       )}
                     </div>
                   </div>
@@ -61,16 +68,16 @@ const Recommend = ({ responseData }) => {
         </div>
         <div className="Recommend-sub-container">
           <div className="Recommend-section">
-            <p className="Rec-sub-title1">
+            {/*<p className="Rec-sub-title1">
               <span className="Rec-sub-title3">RDS</span> Instances
-            </p>
+            </p>*/}
             {responseData &&
               responseData.rds_metrics &&
               filterAvailableRDSInstances(responseData.rds_metrics).map(
                 (instance, idx) => (
                   <div key={idx} className="Recommend-instance-group">
                     <div className="Recommend-instance">
-                      <div className="rec-box">
+                      <div className="rec-main-box">
                         <p className="id-title">
                           DB Instance Identifier :{" "}
                           {instance.db_instance_identifier}
@@ -113,7 +120,9 @@ const Recommend = ({ responseData }) => {
                           </div>
                         ))
                       ) : (
-                        <p>No recommendations available</p>
+                        <p className="rec-sub-box">
+                          No recommendations available
+                        </p>
                       )}
                     </div>
                   </div>

@@ -21,7 +21,8 @@
   font-style: normal;
 }
 
-.infor {
+.rec {
+  margin: 0px 80px 40px 70px;
   /* margin-top: 60px; */
   display: flex;
   flex-direction: column;
@@ -45,7 +46,6 @@
 .infor-main-title {
   font-size: 34px;
   font-family: "Pretendard-Regular";
-  padding-bottom: 20px;
 }
 
 .Rec-sub-title1 {
@@ -74,36 +74,39 @@
 }
 
 .Recommend-container {
-  border: 1px solid #cdcdcd;
-  margin: 0px 45px 0px 45px;
-  width: 90%;
-  margin-bottom: 20px;
-  border-radius: 30px;
-  /* background-color: #f9f9f9; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  margin: 20px 0;
+  padding: 0 20px;
 }
 
 .Recommend-sub-container {
-  /*margin: 0px 45px 0px 45px;*/
-  width: 95%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   margin-bottom: 20px;
-  /*border: 1px solid #ddd;*/
-  border-radius: 30px;
-  padding: 40px;
 }
 
 .Recommend-section {
   display: flex;
-  margin: 0 10px;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
 }
 .Recommend-instance-group {
-  margin-bottom: 20px;
+  flex: 1 1 calc(33.333% - 20px);
+  box-sizing: border-box;
+  min-width: 200px;
 }
 
-.Recommend-instance {
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
+.Recommend-instance .rec-box {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .Recommend-instance p {
@@ -111,10 +114,13 @@
 }
 
 p.rec-title {
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 0;
   font-weight: bold;
   color: #002ead;
   background-color: #d2d2ff;
-  /* font-size: 3px; */
 }
 
 .rec-box {
@@ -123,6 +129,28 @@ p.rec-title {
 
 .rec-box:hover {
   background-color: #dcebff;
+}
+
+.rec-main-box {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.rec-main-box:hover {
+  background-color: white;
+}
+
+.rec-sub-box {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: rgba(242, 242, 252, 0.8);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.rec-sub-box:hover {
+  background-color: white;
 }
 
 .Recommend-instance ul {

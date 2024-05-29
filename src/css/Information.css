@@ -50,6 +50,19 @@ p {
   color: #002ead;
 }
 
+.infor {
+  margin: 40px 80px 40px 70px;
+  /* margin-top: 60px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 30vh;
+  box-sizing: border-box;
+  padding-bottom: 70px;
+  padding-top: 5px;
+}
+
 .infor-sub-title {
   background-color: antiquewhite;
   letter-spacing: 2px;
@@ -57,4 +70,41 @@ p {
   font-size: 20px;
   margin: 5px 0px 25px 0;
   padding: 5px 25px 5px 25px;
+}
+
+.infor-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  margin: 20px 0;
+  padding: 0 20px;
+}
+
+.infor-sub-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.infor-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+}
+
+.infor-instance-group {
+  flex: 1 1 calc(33.333% - 20px);
+  box-sizing: border-box;
+  min-width: 200px;
+}
+
+.infor-instance .rec-box {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
