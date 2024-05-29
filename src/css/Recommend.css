@@ -73,6 +73,12 @@
   margin-right: 8px;
 }
 
+.Rec-sub-title4 {
+  color: #ff5a5a;
+  font-size: 15px;
+  margin-right: 2px;
+}
+
 .Recommend-container {
   display: flex;
   flex-wrap: wrap;

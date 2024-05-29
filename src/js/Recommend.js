@@ -36,7 +36,8 @@ const Recommend = ({ responseData }) => {
                     <div className="Recommend-instance">
                       <div className="rec-main-box">
                         <p className="id-title">
-                          EC2 Instance ID : {instance.instance_id}
+                          <span className="Rec-sub-title4">[EC2]</span> Instance
+                          ID : {instance.instance_id}
                         </p>
                         <p>Instance Type : {instance.instance_type}</p>
                         <p>Instance Name : {instance.instance_name}</p>{" "}
@@ -79,7 +80,8 @@ const Recommend = ({ responseData }) => {
                     <div className="Recommend-instance">
                       <div className="rec-main-box">
                         <p className="id-title">
-                          DB Instance Identifier :{" "}
+                          <span className="Rec-sub-title4">[RDS]</span> DB
+                          Instance Identifier :{" "}
                           {instance.db_instance_identifier}
                         </p>
                         <p>DB Instance Class : {instance.db_instance_class}</p>
