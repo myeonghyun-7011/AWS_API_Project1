@@ -5,7 +5,7 @@
 > 각 고객의 사용중인 인스턴스를 클라우드워치를 통해 확인하고 요금 추천하기 👉http://www.adaptercloud.store/
 
 ## 👨‍👩‍👦‍👦 팀 이름 : Adaptor ![imgLogo_bg01](https://github.com/myeonghyun-7011/AWS_API_Project1/assets/66741997/c22a7fa6-1047-48f9-927b-44a485b93682)
-">
+
 
 
 ## 👨‍👩‍👦‍👦 팀 소개 
