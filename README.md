@@ -31,15 +31,15 @@
 
 ## 시연 GIF
 
-### Main
+### Main 페이지
 
 <br>
 
-### AWS Key Auth
+### AWS Key Auth 페이지
 
 <br>
 
-### CPU Metric Dashboard
+### CPU Metric Dashboard 페이지
 
 <br>
 
