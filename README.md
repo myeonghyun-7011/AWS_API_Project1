@@ -47,6 +47,16 @@
 
 <br/>
 
+## 🔨 아키텍처 구성도
+![아키텍처](https://github.com/myeonghyun-7011/AWS_API_Project1/assets/66741997/499544a0-2a4a-4f32-8839-84a865697cda)
+
+<br/>
+
+## 🔨 API 및 내부 구성
+![Api 내부](https://github.com/myeonghyun-7011/AWS_API_Project1/assets/66741997/5c56f817-787f-41c9-a547-0eda3f4eb41d)
+
+<br/>
+
 ## 🔨 플로우 차트
 ![image](https://github.com/myeonghyun-7011/AWS_API_Project1/assets/66741997/111a645a-8fa5-4d3b-81bf-b78b5a1c979e)
 
