@@ -39,20 +39,9 @@
 <br/>
 
 ## 🔧 Stack
+![adaptor 기술](https://github.com/myeonghyun-7011/AWS_API_Project1/assets/66741997/678a7f66-727a-4a98-9173-f51636a3e60c)
 
-**Frontend(Web)**
-- **Language** : JavaScript, HTML , CSS
-- **Library & Framework** : React, Axios
-- **Deploy**: AWS(EC2,S3)
-- 
-<br />
 
-**Backend**
-- **Language** : 
-- **Library & Framework** :
-- **Database** : 
-- **ORM** : 
-- **Deploy**: AWS(EC2, RDS)
 
 <br/>
 
