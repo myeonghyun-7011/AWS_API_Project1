@@ -70,8 +70,8 @@
 <br/>
 
 ## Swager
-![image](https://github.com/myeonghyun-7011/AWS_API_Project1/assets/66741997/a00629b9-0eca-43c2-98ae-bd81e4cfecf3)
-![image](https://github.com/myeonghyun-7011/AWS_API_Project1/assets/66741997/927c9d8b-8cbb-4fe2-a9f8-2ab540b44ee3)
+![swager](https://github.com/myeonghyun-7011/AWS_API_Project1/assets/66741997/329ee116-e436-4cda-b0c5-2324054947a2)
+
 
 
 
