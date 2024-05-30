@@ -11,7 +11,7 @@ const HeaderNav = () => {
       </div>
       <nav className="navigation">
         <Link to="/">HOME</Link>
-        <Link to="/LoginForm">Access_Info</Link>
+        <Link to="/LoginForm">AWS Key Auth</Link>
       </nav>
     </header>
   );
