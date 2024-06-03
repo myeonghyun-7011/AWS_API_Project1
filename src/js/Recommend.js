@@ -54,6 +54,7 @@ const Recommend = ({ responseData }) => {
                             </p>
                             <p>OS Engine : {recommendation.ec2_os_engine}</p>
                             <p>Price : ${recommendation.price.toFixed(4)}</p>
+                            <p>expected_max : {recommendation.expected_max}</p>
                           </div>
                         ))
                       ) : (
@@ -119,6 +120,7 @@ const Recommend = ({ responseData }) => {
                             </p>
                             <p>OS Engine : {recommendation.ec2_os_engine}</p>
                             <p>Price : ${recommendation.price.toFixed(4)}</p>
+                            <p>expected_max : {recommendation.expected_max}</p>
                           </div>
                         ))
                       ) : (
