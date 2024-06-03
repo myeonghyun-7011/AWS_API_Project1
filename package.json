@@ -12,6 +12,7 @@
     "aws-sdk": "^2.1624.0",
     "axios": "^1.6.8",
     "chart.js": "^4.4.2",
+    "date-fns": "^3.6.0",
     "http-proxy-middleware": "^3.0.0",
     "jquery": "^3.7.1",
     "mongodb": "^6.6.1",

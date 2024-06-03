@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import AWS from "aws-sdk";
 import "../css/AccessInfo.css";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import LoadingAccessInfo from "./components/LoadingAccessInfo";
+import { format } from "date-fns";
 import {
   LineChart,
   Line,
@@ -14,11 +15,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-
 const AccessInfo = () => {
   const location = useLocation();
   const { accessKeyId, secretAccessKey, currentRegion } = location.state;
-
 
   useEffect(() => {
     AWS.config.update({
@@ -27,6 +26,7 @@ const AccessInfo = () => {
       region: currentRegion,
     });
   }, [accessKeyId, secretAccessKey, currentRegion]);
+
   const [ec2InstanceIds, setEc2InstanceIds] = useState([]);
   const [rdsInstanceIds, setRdsInstanceIds] = useState([]);
   const [ec2Metrics, setEc2Metrics] = useState([]);
@@ -35,9 +35,6 @@ const AccessInfo = () => {
 
   useEffect(() => {
     const fetchInstanceIds = async () => {
-
-      // -----------------------------------------------------------------------------------------------
-
       const ec2 = new AWS.EC2();
       const ec2Params = {
         Filters: [{ Name: "instance-state-name", Values: ["running"] }],
@@ -60,8 +57,6 @@ const AccessInfo = () => {
         console.error("EC2 인스턴스 ID 가져오기 오류:", error);
       }
 
-      // --------------------------------------------------------------------------------------
-
       const rds = new AWS.RDS();
       const rdsParams = {};
 
@@ -78,7 +73,6 @@ const AccessInfo = () => {
       }
     };
 
-    // ----------------------------------------------------------------------------------------------
     fetchInstanceIds();
   }, []);
 
@@ -87,7 +81,6 @@ const AccessInfo = () => {
       if (ec2InstanceIds.length === 0 && rdsInstanceIds.length === 0) return;
 
       try {
-        // EC2 지표 가져오기
         const ec2DataPromises = ec2InstanceIds.map(async (instance) => {
           const ec2Data = await getMetrics(
             "AWS/EC2",
@@ -108,7 +101,6 @@ const AccessInfo = () => {
 
         setEc2Metrics(ec2MetricsData);
 
-        // RDS 지표 가져오기
         const rdsDataPromises = rdsInstanceIds.map(async (instance) => {
           const rdsData = await getMetrics(
             "AWS/RDS",
@@ -145,7 +137,7 @@ const AccessInfo = () => {
     region
   ) => {
     const cloudWatch = new AWS.CloudWatch({ region });
-    const startTime = new Date("2024-05-01T00:00:00Z");
+    const startTime = new Date("2024-05-27");
     const endTime = new Date();
 
     const params = {
@@ -224,64 +216,93 @@ const AccessInfo = () => {
   const processMetrics = (data) => {
     const result = [];
     const timestamps = data[0]?.Timestamps || [];
-
     timestamps.sort((a, b) => new Date(a) - new Date(b));
-
+  
     timestamps.forEach((timestamp, index) => {
       const date = new Date(timestamp);
       const entry = { date };
       data.forEach((metric) => {
         const id = metric.Id.replace(/Utilization/g, "");
-        entry[id] = metric.Values[index];
+        if (metric.Values[index] !== undefined) {
+          entry[id] = metric.Values[index];
+        } else {
+          entry[id] = null; // 데이터가 없는 경우 null로 설정
+        }
       });
       result.push(entry);
     });
     return result;
   };
 
-  const renderLineChart = (metrics, title, dataKeys, strokeColors, names) => (
-    <div className="chart">
-      <h3>{title}</h3>
-      <ResponsiveContainer width="100%" height={400}>
-        <LineChart data={metrics}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          {dataKeys.map((dataKey, index) => (
-            <Line
-              key={dataKey}
-              type="monotone"
-              dataKey={dataKey}
-              stroke={strokeColors[index]}
-              name={names[index]}
+  const renderLineChart = (metrics, title, dataKeys, strokeColors, names) => {
+    // 5월 1일부터 현재까지의 날짜 배열 생성
+    const startDate = new Date("2024-05-27");
+    const endDate = new Date();
+    const dateRange = [];
+    for (
+      let date = startDate;
+      date <= endDate;
+      date.setDate(date.getDate() + 1)
+    ) {
+      dateRange.push(new Date(date));
+    }
+
+    
+
+    return (
+      <div className="chart">
+        <h3>{title}</h3>
+        <ResponsiveContainer width="100%" height={400}>
+          <LineChart data={metrics}>
+            <CartesianGrid strokeDasharray="1 1" />
+            <XAxis
+              dataKey="date"
+              domain={[startDate, endDate]}
+              type="number"
+              interval={Math.ceil(dateRange.length / 10)} // X축 레이블 간격 조절
+              tickFormatter={(tick) => format(new Date(tick), "MM-dd")}
+              ticks={dateRange.map((date) => date.getTime())}
+              angle={0} // 레이블 회전
+              textAnchor="end" // 레이블 텍스트 위치 설정
             />
-          ))}
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
-  );
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            {dataKeys.map((dataKey, index) => (
+              <Line
+                key={dataKey}
+                type="monotone"
+                dataKey={dataKey}
+                stroke={strokeColors[index]}
+                name={names[index]}
+              />
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    );
+  };
 
   const combineMetrics = (metrics, key) => {
     const combined = [];
-    metrics.forEach((metricData) => {
-      metricData.metrics.forEach((metric) => {
-        const existing = combined.find((m) => m.date === metric.date);
-        if (existing) {
-          existing[`${key}${metricData.name}`] = metric[key];
-        } else {
-          combined.push({
-            date: metric.date,
-            [`${key}${metricData.name}`]: metric[key],
-          });
+    const allDates = metrics.flatMap((metricData) =>
+      metricData.metrics.map((metric) => metric.date)
+    );
+    const uniqueDates = [...new Set(allDates)];
+
+    uniqueDates.forEach((date) => {
+      const entry = { date };
+      metrics.forEach((metricData) => {
+        const metric = metricData.metrics.find((m) => m.date === date);
+        if (metric) {
+          entry[`${key}${metricData.name}`] = metric[key];
         }
       });
+      combined.push(entry);
     });
     return combined;
   };
 
-  // 랜덤 색상을 생성하는 함수
   const getRandomColor = (index) => {
     const colors = [
       "#8884d8",

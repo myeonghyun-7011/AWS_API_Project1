@@ -89,7 +89,7 @@ const Information = ({ responseData }) => {
                               {instance.metrics.CPUUtilization.Average}
                             </li>
                           </ul>
-                          <li>Database Connections:</li>
+                          {/* <li>Database Connections:</li>
                           <ul>
                             <li>
                               Minimum :{" "}
@@ -103,7 +103,7 @@ const Information = ({ responseData }) => {
                               Average :{" "}
                               {instance.metrics.DatabaseConnections.Average}
                             </li>
-                          </ul>
+                          </ul> */}
                         </ul>
                       </div>
                     </div>
