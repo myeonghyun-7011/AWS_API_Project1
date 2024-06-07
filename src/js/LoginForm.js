@@ -21,7 +21,7 @@ const LoginForm = ({ setResponseData }) => {
     }
 
     try {
-      const response = await axios.post("http://13.231.5.147:8000/api/metrics/", {  
+      const response = await axios.post("/api/metrics/", {  
         access_key_id,
         secret_access_key,
         region_name: selectedRegion,
